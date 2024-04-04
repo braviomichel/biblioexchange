@@ -79,9 +79,7 @@ include_once "check_connection.php";
             max-width: 100%;
             height: auto;
         }
-        .carousselh{
-            height: '200px';
-        }
+      
     </style>
 </head>
 <body>
@@ -174,40 +172,44 @@ include_once "check_connection.php";
                 </div>
             </div>
                     </div>
-                    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel"  >
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
     <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
   </ol>
-  <div class="carousel-inner carousselh">
-    <div class="carousel-item active carousselh">
-      <img src="Assets/book9.jpg" alt="Livre 2" class="img-fluid mb-3 d-block w-30 carousselh" >
-      <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
-      </div>
+  <div class="carousel-inner mx-auto "  style="width: 200px;" >
+    <div class="carousel-item active ">
+    <div class="book">
+                            <img src="Assets/book10.jpg" alt="Livre 2" class="img-fluid mb-3">
+                            
+                        </div>
+      
+      <h5>First slide label</h5>
     </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
-      </div>
+    
+    <div class="carousel-item  ">
+    <div class="book">
+                            <img src="Assets/book10.jpg" alt="Livre 2" class="img-fluid mb-3">
+                           
+                        </div>
+                        <h5>First slide label</h5>
     </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Third slide label</h5>
-        <p>Some representative placeholder content for the third slide.</p>
-      </div>
+    <div class="carousel-item  ">
+    <div class="book">
+                            <img src="Assets/book10.jpg" alt="Livre 2" class="img-fluid mb-3">
+                            <p class="mb-0">Titre du Livre 10</p>
+                        </div>
+                        <h5>First slide label</h5>
     </div>
+    
+   
   </div>
-  <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
+  <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev"  style="height: 50px;  width: 50px; ">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
   </button>
-  <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next">
+  <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next" style="height: 50px;  width: 50px; ">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </button>
