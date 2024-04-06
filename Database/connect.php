@@ -3,7 +3,7 @@
     // Informations de connexion à la base de données
     $host = 'localhost'; 
     $user = 'root'; 
-    $password = 'root'; 
+    $password = ''; 
     $database = 'biblioexchange'; 
 
     // Connexion à la base de données

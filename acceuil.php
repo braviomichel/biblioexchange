@@ -79,7 +79,17 @@ include_once "check_connection.php";
             max-width: 100%;
             height: auto;
         }
-      
+        .squircle {
+            border-radius: auto;
+            overflow: hidden;
+            background-color: #f8f9fa;
+            padding: auto;
+            margin: auto;
+            margin-top: auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: auto;
+        }
+
     </style>
 </head>
 <body>
@@ -180,106 +190,134 @@ include_once "check_connection.php";
   </ol>
   <div class="carousel-inner mx-auto "  style="width: 200px;" >
     <div class="carousel-item active ">
-    <div class="book">
-                            <img src="Assets/book1.jpg" alt="Livre 1" class="img-fluid mb-3">
+    <div class="squircle">
+        <div class="book">
+                            <img src="Assets/book5.jpg" alt="Livre 1" class="img-fluid mb-3">
                             
-                        </div>
+        </div>
       
-      <h5>First slide label</h5>
+      <h5>test1</h5>
     </div>
-    
+    </div>
     <div class="carousel-item  ">
+    <div class="squircle">
     <div class="book">
-                            <img src="Assets/book2.jpg" alt="Livre 2" class="img-fluid mb-3">
+                            <img src="Assets/book5.jpg" alt="Livre 2" class="img-fluid mb-3">
                            
                         </div>
-                        <h5>First slide label</h5>
+                        <h5>test2</h5>
+    </div>
     </div>
     <div class="carousel-item  ">
+    <div class="squircle">
     <div class="book">
                             <img src="Assets/book3.jpg" alt="Livre 3" class="img-fluid mb-3">
                            
                         </div>
-                        <h5>First slide label</h5>
+                        <h5>test3</h5>
+    </div>
     </div>
     <div class="carousel-item  ">
+    <div class="squircle">
     <div class="book">
                             <img src="Assets/book4.jpg" alt="Livre 4" class="img-fluid mb-3">
                            
                         </div>
                         <h5>First slide label</h5>
     </div>
+    </div>
     <div class="carousel-item  ">
+    <div class="squircle">
     <div class="book">
                             <img src="Assets/book5.jpg" alt="Livre 5" class="img-fluid mb-3">
                            
                         </div>
                         <h5>First slide label</h5>
     </div>
+    </div>
     <div class="carousel-item  ">
+    <div class="squircle">
     <div class="book">
-                            <img src="Assets/book6.jpg" alt="Livre 6" class="img-fluid mb-3">
+                            <img src="Assets/book6.jpeg" alt="Livre 6" class="img-fluid mb-3">
                            
                         </div>
                         <h5>First slide label</h5>
     </div>
+    </div>
     <div class="carousel-item  ">
+    <div class="squircle">
     <div class="book">
                             <img src="Assets/book7.jpg" alt="Livre 7" class="img-fluid mb-3">
                            
                         </div>
                         <h5>First slide label</h5>
     </div>
+    </div>
     <div class="carousel-item  ">
+    <div class="squircle">
     <div class="book">
-                            <img src="Assets/book8.jpg" alt="Livre 8" class="img-fluid mb-3">
+                            <img src="Assets/book5.jpg" alt="Livre 8" class="img-fluid mb-3">
                            
                         </div>
                         <h5>First slide label</h5>
     </div>
+    </div>
     <div class="carousel-item  ">
+    <div class="squircle">
     <div class="book">
                             <img src="Assets/book9.jpg" alt="Livre 9" class="img-fluid mb-3">
                            
                         </div>
                         <h5>First slide label</h5>
     </div>
+    </div>
     <div class="carousel-item  ">
+    <div class="squircle">
     <div class="book">
                             <img src="Assets/book10.jpg" alt="Livre 10" class="img-fluid mb-3">
                            
                         </div>
                         <h5>First slide label</h5>
     </div>
+    </div>
     <div class="carousel-item  ">
+    <div class="squircle">
     <div class="book">
-                            <img src="Assets/book11.jpg" alt="Livre 11" class="img-fluid mb-3">
+                            <img src="Assets/book5.jpg" alt="Livre 11" class="img-fluid mb-3">
                            
                         </div>
                         <h5>First slide label</h5>
     </div>
+    </div>
     <div class="carousel-item  ">
+    <div class="squircle">
     <div class="book">
-                            <img src="Assets/book12.jpg" alt="Livre 12" class="img-fluid mb-3">
+                            <img src="Assets/book5.jpg" alt="Livre 12" class="img-fluid mb-3">
                            
                         </div>
                         <h5>First slide label</h5>
     </div>
+    </div>
     <div class="carousel-item  ">
+    <div class="squircle">
     <div class="book">
                             <img src="Assets/book10.jpg" alt="Livre 2" class="img-fluid mb-3">
                            
                         </div>
                         <h5>First slide label</h5>
     </div>
+    </div>
     <div class="carousel-item  ">
+    <div class="squircle">
     <div class="book">
                             <img src="Assets/book10.jpg" alt="Livre 2" class="img-fluid mb-3">
                            
                         </div>
                         <h5>First slide label</h5>
     </div>
+    </div>
     <div class="carousel-item  ">
+    <div class="squircle">
     <div class="book">
                             <img src="Assets/book10.jpg" alt="Livre 2" class="img-fluid mb-3">
                             <p class="mb-0">Titre du Livre 10</p>
