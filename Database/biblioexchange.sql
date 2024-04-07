@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : dim. 07 avr. 2024 à 10:56
+-- Généré le : dim. 07 avr. 2024 à 20:16
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.2.13
 
@@ -69,15 +69,7 @@ CREATE TABLE IF NOT EXISTS `user_sessions` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `session_id` (`session_id`,`user_id`),
   UNIQUE KEY `session_id_2` (`session_id`,`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Déchargement des données de la table `user_sessions`
---
-
-INSERT INTO `user_sessions` (`id`, `session_id`, `user_id`) VALUES
-(26, '4b7dba5e3603f4cf2cb5f610713718a0b56c01e95d9fbce94cedbe9cb186bd33', 34),
-(30, 'f42ab64c6d940ffefd3ecb6266237e9e36d133a624f87cf6bfc5eee0a5f77720', 35);
+) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -102,16 +94,16 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `role_utilisateur` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   PRIMARY KEY (`id_utilisateur`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `utilisateurs`
 --
 
 INSERT INTO `utilisateurs` (`id_utilisateur`, `nom_utilisateur`, `prenom_utilisateur`, `email`, `mot_de_passe`, `date_naissance`, `telephone`, `sexe`, `niveau_etude`, `biographie`, `genre_prefere`, `image_profil`, `role_utilisateur`) VALUES
-(34, 'user', 'user', 'user@gmail.com', '$2y$12$yc6BBUz6c6/kdronEcfo5.wYuDTp2H66Mdfaylt9nrIJ2WN9Dr0fK', '2024-04-04', '0123456978', 'homme', 'primaire', ',qsdnsqjdsd dqdsodnqsdklsqd qdsnsdlqsdqskd,sqd dsqklkdsqldksqdk,sqldksnqdkqsdkl,sqdksq,dkqs,dklqsndjqsndkqsldqiuhdqmfdsfjpdf fsodfjsdkfezfi,sqpsf fsdofpkdsfodkfizjeofier zoirjzeoirjzeorizeorie eroizjrzeoirjeziorjze erzeoirjzeoirjezire ezirjriozjerioejzroi ezroiezjrzieorjezoijre', 'a:2:{i:0;s:7:\"fiction\";i:1;s:15:\"romanHistorique\";}', '', 'user'),
-(35, 'ESSOU', 'Pierre Canisius Pax', 'picanessou@gmail.com', '$2y$12$yOypcjtBuJAqkybzeaA9DunGe2NTdyKWLImuzYmf.6OOAM9.uq17y', '2001-12-21', '0645372871', 'homme', 'universitaire', 'Etudiant, Passionné de Basket et de belles créatures', 'a:4:{i:0;s:7:\"fiction\";i:1;s:14:\"scienceFiction\";i:2;s:11:\"fantastique\";i:3;s:6:\"poesie\";}', '', 'admin'),
-(37, 'toto', 'tata', 'toto@user.com', '$2y$12$dttzOlpuhv.luliaQxVi/uwDvAM9cI5VIwYHQUvW31hIj/ZuWKW5G', '2024-04-04', '0645372871', 'homme', 'primaire', 'qqlsdnlqslkdqs,dmqsdqsdqsdqsdqsdqsdqs qdqsdqsdqsdqsddqdsqd', 'a:2:{i:0;s:7:\"fiction\";i:1;s:14:\"scienceFiction\";}', '', 'user');
+(34, 'user', 'user', 'user@gmail.com', '$2y$12$yc6BBUz6c6/kdronEcfo5.wYuDTp2H66Mdfaylt9nrIJ2WN9Dr0fK', '2021-10-12', '0645372875', 'homme', 'universitaire', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaa', 'a:2:{i:0;s:7:\"fiction\";i:1;s:15:\"romanHistorique\";}', 'wbs.png', 'user'),
+(35, 'ESSOU', 'Pierre Canisius Pax', 'admin@gmail.com', '$2y$12$yOypcjtBuJAqkybzeaA9DunGe2NTdyKWLImuzYmf.6OOAM9.uq17y', '2001-12-21', '0645372871', 'homme', 'universitaire', 'Etudiant, Passionné de Basket et de belles créatures', 'a:4:{i:0;s:7:\"fiction\";i:1;s:14:\"scienceFiction\";i:2;s:11:\"fantastique\";i:3;s:6:\"poesie\";}', '', 'admin'),
+(37, 'toto', 'tata', 'toto@user.com', '$2y$12$dttzOlpuhv.luliaQxVi/uwDvAM9cI5VIwYHQUvW31hIj/ZuWKW5G', '2024-04-04', '0645372871', 'homme', 'primaire', 'qqlsdnlqslkdqs,dmqsdqsdqsdqsdqsdqsdqs qdqsdqsdqsdqsddqdsqd', 'a:2:{i:0;s:7:\"fiction\";i:1;s:14:\"scienceFiction\";}', 'avatar1.png', 'user');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
