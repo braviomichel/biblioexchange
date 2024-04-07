@@ -21,6 +21,14 @@ if (isset($_COOKIE['PHPSESSID'])) {
     $stmt->execute();    
     $stmt->store_result();
 
+    // Si c'est un admin, on le redirige dans la bonne zone : 
+    include_once "Back-end/get_user_data.php";
+    if($role == "admin")
+    {
+        header('Location: Administrateur/acceuil.html');
+        exit;
+    }
+
     if ($stmt->num_rows < 0) {
         header('Location: Connexion_biblioEx.php');
         exit;

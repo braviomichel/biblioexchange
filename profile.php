@@ -1,106 +1,50 @@
 <?php
 
-// requete vers la bdd pour récupérer les informations de l'utilisateur connecté
-session_start();
-
+if (!isset($_SESSION)) {
+    session_start();
+}
 include_once 'Database/connect.php';
 include_once 'check_connection.php';
+include_once 'Back-end/get_user_data.php'; //get all user data
 
-// Vérifie si le cookie de session est présent
-if (isset($_COOKIE['PHPSESSID'])) {
-    // Récupère le cookie de session
-    $session_id = $_COOKIE['PHPSESSID'];
+// Modification des informations du profil : 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nom = $_POST["nom"];
+    $prenoms = $_POST["prenoms"];
+    $email = $_POST["email"];
+    $dateNaissance = $_POST["dateNaissance"];
+    $tel = $_POST["tel"] ?? "";
+    $niveauEtude = $_POST["niveauEtude"];
+    $bio = $_POST["bio"];
+    $sexe = $_POST["sexe"];
 
-    // Vérifie la connexion
-    if ($mysqli->connect_error) {
-        die("Connection failed: " . $mysqli->connect_error);
-    }
+    // On va faire un update de la base de données 
+    $sql = "UPDATE utilisateurs SET nom_utilisateur = ?, prenom_utilisateur = ?, email = ?, date_naissance = ?, telephone = ?, sexe = ?, niveau_etude = ?, biographie = ? WHERE id_utilisateur = ?";
 
-    // Requête SQL préparée pour récupérer l'ID de l'utilisateur à partir de la table user_sessions
-    $sql = "SELECT user_id FROM user_sessions WHERE session_id = ?";
+    // Préparation de la requête
     $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param("s", $session_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
 
-    if ($result->num_rows > 0) {
-        // Récupère l'ID de l'utilisateur
-        $row = $result->fetch_assoc();
-        $user_id = $row['user_id'];
+    // Liaison des paramètres
+    $stmt->bind_param("ssssssssi", $nom, $prenoms, $email, $dateNaissance, $tel, $sexe, $niveauEtude, $bio, $user_id);
 
-        // Requête SQL préparée pour récupérer les informations de l'utilisateur à partir de la table utilisateurs
-        $sql_user = "SELECT * FROM utilisateurs WHERE id_utilisateur = ?";
-        $stmt_user = $mysqli->prepare($sql_user);
-        $stmt_user->bind_param("i", $user_id);
-        $stmt_user->execute();
-        $result_user = $stmt_user->get_result();
-
-        if ($result_user->num_rows > 0) {
-            // L'utilisateur est connecté
-            $user_info = $result_user->fetch_assoc();
-            $nom = $user_info["nom_utilisateur"];
-            $prenoms = $user_info["prenom_utilisateur"];
-            $email = $user_info["email"];
-            $dateNaissance = $user_info["date_naissance"];
-            $tel = $user_info["telephone"];
-            $niveauEtude = $user_info["niveau_etude"];
-            $bio = $user_info["biographie"];
-            $sexe = $user_info["sexe"];
-            $password = $user_info["mot_de_passe"];
-            //$genresPref = $user_info["genre_prefere"];
-
-        } else {
-            $message = "Aucune information utilisateur trouvée.";
-            $errortype = "danger";
-        }
-
-        // Modification du mot de passe : 
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Récupérer les données du formulaire
-            $ancien_mot_de_passe = $_POST["oldPassword"];
-            $nouveau_mot_de_passe = $_POST["newPassword"];
-
-            //echo($ancien_mot_de_passe);
-
-            // Utiliser Bcrypt avec un coût personnalisé (par exemple, coût = 12)
-            $options = ['cost' => 12];
-            $hashedMotDePasse = password_hash($nouveau_mot_de_passe, PASSWORD_BCRYPT, $options);
-            //$ancienHashedMotDePasse = password_hash($ancien_mot_de_passe, PASSWORD_BCRYPT, $options);
-
-            if (password_verify($ancien_mot_de_passe,$password)) {
-                // Requête SQL préparée pour récupérer l'ID de l'utilisateur à partir de la table user_sessions
-                $sql = "UPDATE utilisateurs SET mot_de_passe = ? WHERE id_utilisateur = ?";
-                $stmt = $mysqli->prepare($sql);
-                $stmt->bind_param("si", $hashedMotDePasse, $user_id);
-                if ($stmt->execute()) {
-                    $message = "Mot de passe changé avec succès ! ";
-                    $errortype = "success";
-                } else {
-                    $message = "Le mot de passe n'a pas pu être changé ! ";
-                    $errortype = "danger";
-                }
-
-            } else {
-                $message = "Mot de passe incorrect";
-                $errortype = "danger";
-            }
-
-        }
+    // Exécuter la requête préparée
+    if ($stmt->execute()) {
+        $message = "Profil modifié avec succès.";
+        $errortype = "success";
 
     } else {
-        // Aucune correspondance pour le cookie de session dans la table user_sessions
-        $message = "Aucune correspondance pour le cookie de session.";
+        $message = "Erreur lors de la modification du profil : " . $stmt->error;
         $errortype = "danger";
     }
 
-    // Ferme la connexion à la base de données
-    $stmt->close();
-    $stmt_user->close();
-    $mysqli->close();
-} else {
-    // Si le cookie de session n'est pas présent
-    //echo "Aucun cookie de session trouvé.";
 }
+
+
+// Ferme la connexion à la base de données
+$stmt->close();
+$stmt_user->close();
+$mysqli->close();
+
 
 
 ?>
@@ -112,7 +56,7 @@ if (isset($_COOKIE['PHPSESSID'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Font Awesome CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -125,13 +69,18 @@ if (isset($_COOKIE['PHPSESSID'])) {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
         }
+
         .logo img {
-            width: 50px; /* Modification de la taille du logo */
+            width: 50px;
+            /* Modification de la taille du logo */
             height: auto;
-            border-radius: 10px; /* Arrondir les bords du logo */
+            border-radius: 10px;
+            /* Arrondir les bords du logo */
         }
+
         .app-logo {
-            width: 30px; /* Miniaturisation du logo */
+            width: 30px;
+            /* Miniaturisation du logo */
             height: auto;
             margin-right: 10px;
         }
@@ -258,11 +207,9 @@ if (isset($_COOKIE['PHPSESSID'])) {
 
 <body>
 
-            <div class="header">
-                <?php include_once "header.php"; ?>
-            </div>
-      
-
+    <div class="header">
+        <?php include_once "header.php"; ?>
+    </div>
 
     <div class="containerrd">
         <div class="squircle">
@@ -276,58 +223,60 @@ if (isset($_COOKIE['PHPSESSID'])) {
                     <button id="useDefaultAvatarButton">Avatar par défaut</button>
                 </div>
             </div>
-            <?php if (isset($errortype)): ?>
-                <div class="alert <?php echo "alert-" . $errortype; ?> alert-dismissible fade show" role="alert">
-                    <strong>
-                        <?php if ($errortype == "danger"):
-                            echo "Erreur ";
-                        else:
-                            echo "Succes ";
-                        endif; ?>!
-                    </strong>
-                    <?php echo " " . $message; ?>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+            <?php include_once "Back-end/display.php"; ?>
+
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <div class="form-group">
+                    <label for="nom">Nom :</label>
+                    <input type="text" id="nom" name="nom" value="<?php echo $nom; ?>">
                 </div>
-            <?php endif; ?>
-            <div class="form-group">
-                <label for="nom">Nom :</label>
-                <input type="text" id="nom" name="nom" value="<?php echo $nom; ?>" readonly>
-            </div>
-            <div class="form-group">
-                <label for="prenoms">Prénoms :</label>
-                <input type="text" id="prenoms" name="prenoms" value="<?php echo ($prenoms); ?>" readonly>
-            </div>
-            <div class="form-group">
-                <label for="email">Adresse e-mail :</label>
-                <input type="email" id="email" name="email" value="<?php echo ($email); ?>" readonly>
-            </div>
-            <div class="form-group">
-                <label for="dateNaissance">Date de naissance :</label>
-                <input type="text" id="dateNaissance" name="dateNaissance" value="<?php echo ($dateNaissance); ?>"
-                    readonly>
-            </div>
-            <div class="form-group">
-                <label for="tel">Numéro de téléphone :</label>
-                <input type="text" id="tel" name="tel" value="<?php echo ($tel); ?>" readonly>
-            </div>
-            <div class="form-group">
-                <label for="sexe">Sexe :</label>
-                <input type="text" id="sexe" name="sexe" value="<?php echo ($sexe); ?>" readonly>
-            </div>
-            <div class="form-group">
-                <label for="niveauEtude">Niveau d'étude :</label>
-                <input type="text" id="niveauEtude" name="niveauEtude" value="<?php echo ($niveauEtude); ?>" readonly>
-            </div>
-            <div class="form-group">
-                <label for="bio">Biographie :</label>
-                <textarea id="bio" name="bio" rows="5" readonly><?php echo ($bio); ?></textarea>
-            </div>
-            <div class="edit-buttons">
-                <button id="editProfileLink">Modifier le profil</button>
-            </div>
-           
+                <div class="form-group">
+                    <label for="prenoms">Prénoms :</label>
+                    <input type="text" id="prenoms" name="prenoms" value="<?php echo ($prenoms); ?>">
+                </div>
+                <div class="form-group">
+                    <label for="email">Adresse e-mail :</label>
+                    <input type="email" id="email" name="email" value="<?php echo ($email); ?>">
+                </div>
+                <div class="form-group">
+                    <label for="dateNaissance">Date de naissance :</label>
+                    <input type="text" id="dateNaissance" name="dateNaissance" value="<?php echo ($dateNaissance); ?>">
+                </div>
+                <div class="form-group">
+                    <label for="tel">Numéro de téléphone :</label>
+                    <input type="text" id="tel" name="tel" value="<?php echo ($tel); ?>">
+                </div>
+                <div class="form-group">
+                    <label for="sexe">Sexe :</label>
+                    <select id="sexe" name="sexe" class="form-control">
+                        <option value="homme" <?php if ($sexe == "homme"): ?> selected="selected" <?php endif; ?>>Homme
+                        </option>
+                        <option value="femme" <?php if ($sexe == "femme"): ?> selected="selected" <?php endif; ?>>Femme
+                        </option>
+                        <option value="autre" <?php if ($sexe == "autre"): ?> selected="selected" <?php endif; ?>>Autre
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="niveauEtude">Niveau d'étude :</label>
+                    <select id="niveauEtude" name="niveauEtude" class="form-control">
+                        <option value="primaire" <?php if ($niveauEtude == "primaire"): ?> selected="selected" <?php endif; ?>>Primaire</option>
+                        <option value="secondaire" <?php if ($niveauEtude == "secondaire"): ?> selected="selected" <?php endif; ?>>Secondaire</option>
+                        <option value="universitaire" <?php if ($niveauEtude == "universitaire"): ?> selected="selected"
+                            <?php endif; ?>>Universitaire</option>
+                        <option value="autre" <?php if ($niveauEtude == "autre"): ?> selected="selected" <?php endif; ?>>
+                            Autre</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="bio">Biographie :</label>
+                    <textarea id="bio" name="bio" rows="5"><?php echo ($bio); ?></textarea>
+                </div>
+                <div class="edit-buttons">
+                    <button id="editProfileLink">Modifier le profil</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -385,11 +334,11 @@ if (isset($_COOKIE['PHPSESSID'])) {
             });
         });
     </script>
-   
+
 </body>
-<div class="footer" >
-<?php include_once 'footer.php'; ?>
-            </div>
-      
+<div class="footer">
+    <?php include_once 'footer.php'; ?>
+</div>
+
 
 </html>
