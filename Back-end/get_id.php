@@ -3,8 +3,8 @@ if(!isset($_SESSION))
 { 
     session_start(); 
 } 
-include_once 'Database/connect.php';
-include_once 'check_connection.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/biblioexchange/Database/connect.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/biblioexchange/Back-end/check_connection.php';
 
 
 // Vérifie si le cookie de session est présent

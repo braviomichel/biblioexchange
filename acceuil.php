@@ -1,5 +1,6 @@
 <?php
-include_once "check_connection.php";
+include_once "Back-end/check_connection.php";
+include_once "Back-end/check_role.php";
 
 ?>
 

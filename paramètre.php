@@ -4,7 +4,8 @@ if (!isset($_SESSION)) {
     session_start();
 }
 include_once 'Database/connect.php';
-include_once 'check_connection.php';
+include_once "Back-end/check_connection.php";
+include_once "Back-end/check_role.php";
 include_once 'Back-end/get_user_data.php'; // get id and stores it in $user_id variable
 
 

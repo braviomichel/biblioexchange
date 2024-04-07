@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if ($stmt->execute()) {
 
                         if ($role == "admin") {
-                            header("Location: Administrateur/acceuil.html");
+                            header("Location: Administrateur/acceuil.php");
                             exit;
                         } else {
 

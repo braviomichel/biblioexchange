@@ -4,11 +4,13 @@ if (!isset($_SESSION)) {
     session_start();
 }
 include_once 'Database/connect.php';
-include_once 'check_connection.php';
+include_once "Back-end/check_connection.php";
+include_once "Back-end/check_role.php";
 include_once 'Back-end/get_user_data.php'; //get all user data
 
 // Modification des informations du profil : 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     $nom = $_POST["nom"];
     $prenoms = $_POST["prenoms"];
     $email = $_POST["email"];
@@ -17,15 +19,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $niveauEtude = $_POST["niveauEtude"];
     $bio = $_POST["bio"];
     $sexe = $_POST["sexe"];
-
+    
+    // Récupération de l'image 
+    include_once $_SERVER['DOCUMENT_ROOT']."/biblioexchange/Back-end/upload_picture.php";
+    
+    $image_url = $basename;
     // On va faire un update de la base de données 
-    $sql = "UPDATE utilisateurs SET nom_utilisateur = ?, prenom_utilisateur = ?, email = ?, date_naissance = ?, telephone = ?, sexe = ?, niveau_etude = ?, biographie = ? WHERE id_utilisateur = ?";
+    $sql = "UPDATE utilisateurs SET nom_utilisateur = ?, prenom_utilisateur = ?, email = ?, date_naissance = ?, telephone = ?, sexe = ?, niveau_etude = ?, biographie = ?, image_profil = ? WHERE id_utilisateur = ?";
 
     // Préparation de la requête
     $stmt = $mysqli->prepare($sql);
 
     // Liaison des paramètres
-    $stmt->bind_param("ssssssssi", $nom, $prenoms, $email, $dateNaissance, $tel, $sexe, $niveauEtude, $bio, $user_id);
+    $stmt->bind_param("sssssssssi", $nom, $prenoms, $email, $dateNaissance, $tel, $sexe, $niveauEtude, $bio, $image_url, $user_id);
 
     // Exécuter la requête préparée
     if ($stmt->execute()) {
@@ -36,6 +42,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $message = "Erreur lors de la modification du profil : " . $stmt->error;
         $errortype = "danger";
     }
+
+
+
 
 }
 
@@ -214,22 +223,26 @@ $mysqli->close();
     <div class="containerrd">
         <div class="squircle">
             <h1>Profil</h1>
+
             <div class="avatar-container">
                 <div class="avatar" id="avatarContainer">
-                    <img src="Assets/avatar1.png" alt="Avatar par défaut" id="avatarImage">
+                    <img src="<?php echo "uploads/".$image_url; ?>" alt="Avatar par défaut" id="avatarImage">
                 </div>
-                <div class="edit-buttons">
+                <!-- <div class="edit-buttons">
                     <button id="changeAvatarButton">Changer Avatar</button>
                     <button id="useDefaultAvatarButton">Avatar par défaut</button>
-                </div>
+                </div> -->
+
+
             </div>
             <?php include_once "Back-end/display.php"; ?>
 
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="nom">Nom :</label>
                     <input type="text" id="nom" name="nom" value="<?php echo $nom; ?>">
                 </div>
+
                 <div class="form-group">
                     <label for="prenoms">Prénoms :</label>
                     <input type="text" id="prenoms" name="prenoms" value="<?php echo ($prenoms); ?>">
@@ -242,6 +255,11 @@ $mysqli->close();
                     <label for="dateNaissance">Date de naissance :</label>
                     <input type="text" id="dateNaissance" name="dateNaissance" value="<?php echo ($dateNaissance); ?>">
                 </div>
+                <div class="form-group">
+                    <label for="photo">Photo de profil :</label>
+                    <input type="file" id="photo" name="photo">
+                </div>
+
                 <div class="form-group">
                     <label for="tel">Numéro de téléphone :</label>
                     <input type="text" id="tel" name="tel" value="<?php echo ($tel); ?>">
@@ -280,7 +298,7 @@ $mysqli->close();
         </div>
     </div>
 
-
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script>
 
         // Gérer le changement d'avatar
@@ -288,6 +306,7 @@ $mysqli->close();
             // Ouvrir la fenêtre de sélection de fichier
             const input = document.createElement('input');
             input.type = 'file';
+            input.name = "image";
             input.accept = 'image/*';
             input.onchange = function (event) {
                 const file = event.target.files[0];
@@ -295,34 +314,68 @@ $mysqli->close();
                 reader.onload = function (readerEvent) {
                     const imageDataURL = readerEvent.target.result;
                     document.getElementById('avatarImage').src = imageDataURL;
+                    // Envoyer l'image téléchargée au serveur
+                    uploadImage(file);
                 };
                 reader.readAsDataURL(file);
             };
             input.click();
         });
 
+        function uploadImage(file) {
+            $.ajax({
+                url: 'profile.php',
+                type: 'POST',
+                // Form data
+                data: function () {
+                    var data = new FormData();
+                    data.append('action', 'image'); // Ajout de la valeur de l'action
+                    data.append('image', file); // Ajout de la valeur de l'image
+                    return data;
+                }(),
+                success: function (data) {
+                    console.log("success"); // Afficher "success" dans la console du terminal
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+                complete: function () {
+
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        }
+
+
+        // Fonction pour envoyer l'image téléchargée au serveur
+        // function uploadImage(imageDataURL) {
+        //     fetch('#', {
+        //         method: 'POST',
+        //         body: JSON.stringify({ image: imageDataURL }),
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         }
+        //     })
+        //         .then(response => {
+        //             if (!response.ok) {
+        //                 throw new Error('Erreur lors de l\'envoi de l\'image au serveur.');
+        //             }
+        //             return response.text();
+        //         })
+        //         .then(data => {
+        //             console.log(data); // Afficher la réponse du serveur
+        //         })
+        //         .catch(error => {
+        //             console.error('Erreur:', error);
+        //         });
+        // }
+
+
         // Gérer l'utilisation de l'avatar par défaut
         document.getElementById('useDefaultAvatarButton').addEventListener('click', function () {
             document.getElementById('avatarImage').src = 'Assets/avatar1.png';
-        });
-
-        // Gérer l'enregistrement du nouveau mot de passe
-        document.getElementById('saveButton').addEventListener('click', function () {
-            const oldPassword = document.getElementById('oldPassword').value;
-            const newPassword = document.getElementById('newPassword').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            // Vérifier si le nouveau mot de passe correspond à la confirmation
-            if (newPassword !== confirmPassword) {
-                alert("Les mots de passe ne correspondent pas !");
-                return;
-            }
-            // Enregistrer le nouveau mot de passe
-            console.log("Ancien mot de passe :", oldPassword);
-            console.log("Nouveau mot de passe :", newPassword);
-            // Réinitialiser les champs de mot de passe après l'enregistrement
-            document.getElementById('oldPassword').value = "";
-            document.getElementById('newPassword').value = "";
-            document.getElementById('confirmPassword').value = "";
         });
 
         // Gérer la modification du profil

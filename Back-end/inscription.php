@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $bio = $_POST["bio"];
     $sexe = $_POST["sexe"];
     $genresPref = $_POST["genresPref"] ?? [];
+    $image_url = "avatar1.png";
 
     // Valider que les mots de passe correspondent
     if ($motDePasse !== $confirmerMotDePasse) {
@@ -38,14 +39,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $genres = serialize($genresPref);
 
             // Requête préparée pour insérer des données dans la table "utilisateurs"
-            $sql = "INSERT INTO utilisateurs (nom_utilisateur, prenom_utilisateur, email, mot_de_passe, date_naissance, telephone, sexe, niveau_etude, biographie, genre_prefere, role_utilisateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO utilisateurs (nom_utilisateur, prenom_utilisateur, email, mot_de_passe, date_naissance, telephone, sexe, niveau_etude, biographie, genre_prefere, role_utilisateur, image_profil) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             // Préparation de la requête
             $stmt = $mysqli->prepare($sql);
 
             // Liaison des paramètres
             $role = "user";
-            $stmt->bind_param("sssssssssss", $nom, $prenoms, $email, $hashedMotDePasse, $dateNaissance, $tel, $sexe, $niveauEtude, $bio, $genres,$role);
+            $stmt->bind_param("ssssssssssss", $nom, $prenoms, $email, $hashedMotDePasse, $dateNaissance, $tel, $sexe, $niveauEtude, $bio, $genres,$role, $image_url);
 
             // Exécuter la requête préparée
             if ($stmt->execute()) {
