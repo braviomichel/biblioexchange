@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : dim. 07 avr. 2024 à 10:52
+-- Généré le : dim. 07 avr. 2024 à 10:56
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.2.13
 
@@ -20,6 +20,64 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `biblioexchange`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `livres`
+--
+
+DROP TABLE IF EXISTS `livres`;
+CREATE TABLE IF NOT EXISTS `livres` (
+  `id_livre` int NOT NULL AUTO_INCREMENT,
+  `titre_livre` varchar(100) NOT NULL,
+  `auteur` varchar(100) NOT NULL,
+  `année_de_publication` date NOT NULL,
+  PRIMARY KEY (`id_livre`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `transactions`
+--
+
+DROP TABLE IF EXISTS `transactions`;
+CREATE TABLE IF NOT EXISTS `transactions` (
+  `id_transaction` int NOT NULL AUTO_INCREMENT,
+  `nom_emetteur` varchar(100) NOT NULL,
+  `nom_recepteur` varchar(100) NOT NULL,
+  `id_livre` int NOT NULL,
+  `date-transaction` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `titre_livre` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_transaction`),
+  KEY `id_livre` (`id_livre`),
+  KEY `id_livre_2` (`id_livre`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user_sessions`
+--
+
+DROP TABLE IF EXISTS `user_sessions`;
+CREATE TABLE IF NOT EXISTS `user_sessions` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `session_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `user_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `session_id` (`session_id`,`user_id`),
+  UNIQUE KEY `session_id_2` (`session_id`,`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `user_sessions`
+--
+
+INSERT INTO `user_sessions` (`id`, `session_id`, `user_id`) VALUES
+(26, '4b7dba5e3603f4cf2cb5f610713718a0b56c01e95d9fbce94cedbe9cb186bd33', 34),
+(30, 'f42ab64c6d940ffefd3ecb6266237e9e36d133a624f87cf6bfc5eee0a5f77720', 35);
 
 -- --------------------------------------------------------
 
