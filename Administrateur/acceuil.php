@@ -135,7 +135,7 @@ include_once "../Back-end/check_role.php";
                     <a class="nav-link" href="settings.html"><i class="fas fa-cog"></i> Paramètres</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="logOut"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                    <a class="nav-link" href="../Back-end/logout.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                 </li>
             </ul>
         </div>
