@@ -1,5 +1,6 @@
 <?php
-include_once "check_connection.php";
+include_once "Back-end/check_connection.php";
+include_once "Back-end/check_role.php";
 
 ?>
 
@@ -79,6 +80,17 @@ include_once "check_connection.php";
             max-width: 100%;
             height: auto;
         }
+        .squircle {
+            border-radius: auto;
+            overflow: hidden;
+            background-color: #f8f9fa;
+            padding: auto;
+            margin: auto;
+            margin-top: auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: auto;
+        }
+
     </style>
 </head>
 <body>
@@ -161,10 +173,7 @@ include_once "check_connection.php";
                             <img src="Assets/book9.jpg" alt="Livre 2" class="img-fluid mb-3">
                             <p class="mb-0" ><B>Les Inséparablesjk. Hommage à Masashi Kishimoto</B></p>
                         </div>
-                    </div>
-       
-
-                    <div class="col-md-4">
+                        <div class="col-md-4">
                         <div class="book">
                             <img src="Assets/book10.jpg" alt="Livre 2" class="img-fluid mb-3">
                             <p class="mb-0">Titre du Livre 12</p>
@@ -173,6 +182,162 @@ include_once "check_connection.php";
                     <!-- Ajoutez plus de livres populaires ici -->
                 </div>
             </div>
+                    </div>
+                    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel"  >
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner mx-auto "  style="width: 200px;" >
+    <div class="carousel-item active ">
+    <div class="squircle">
+        <div class="book">
+                            <img src="Assets/book5.jpg" alt="Livre 1" class="img-fluid mb-3">
+                            
+        </div>
+      
+      <h5>test1</h5>
+    </div>
+    </div>
+    <div class="carousel-item  ">
+    <div class="squircle">
+    <div class="book">
+                            <img src="Assets/book5.jpg" alt="Livre 2" class="img-fluid mb-3">
+                           
+                        </div>
+                        <h5>test2</h5>
+    </div>
+    </div>
+    <div class="carousel-item  ">
+    <div class="squircle">
+    <div class="book">
+                            <img src="Assets/book3.jpg" alt="Livre 3" class="img-fluid mb-3">
+                           
+                        </div>
+                        <h5>test3</h5>
+    </div>
+    </div>
+    <div class="carousel-item  ">
+    <div class="squircle">
+    <div class="book">
+                            <img src="Assets/book4.jpg" alt="Livre 4" class="img-fluid mb-3">
+                           
+                        </div>
+                        <h5>First slide label</h5>
+    </div>
+    </div>
+    <div class="carousel-item  ">
+    <div class="squircle">
+    <div class="book">
+                            <img src="Assets/book5.jpg" alt="Livre 5" class="img-fluid mb-3">
+                           
+                        </div>
+                        <h5>First slide label</h5>
+    </div>
+    </div>
+    <div class="carousel-item  ">
+    <div class="squircle">
+    <div class="book">
+                            <img src="Assets/book6.jpeg" alt="Livre 6" class="img-fluid mb-3">
+                           
+                        </div>
+                        <h5>First slide label</h5>
+    </div>
+    </div>
+    <div class="carousel-item  ">
+    <div class="squircle">
+    <div class="book">
+                            <img src="Assets/book7.jpg" alt="Livre 7" class="img-fluid mb-3">
+                           
+                        </div>
+                        <h5>First slide label</h5>
+    </div>
+    </div>
+    <div class="carousel-item  ">
+    <div class="squircle">
+    <div class="book">
+                            <img src="Assets/book5.jpg" alt="Livre 8" class="img-fluid mb-3">
+                           
+                        </div>
+                        <h5>First slide label</h5>
+    </div>
+    </div>
+    <div class="carousel-item  ">
+    <div class="squircle">
+    <div class="book">
+                            <img src="Assets/book9.jpg" alt="Livre 9" class="img-fluid mb-3">
+                           
+                        </div>
+                        <h5>First slide label</h5>
+    </div>
+    </div>
+    <div class="carousel-item  ">
+    <div class="squircle">
+    <div class="book">
+                            <img src="Assets/book10.jpg" alt="Livre 10" class="img-fluid mb-3">
+                           
+                        </div>
+                        <h5>First slide label</h5>
+    </div>
+    </div>
+    <div class="carousel-item  ">
+    <div class="squircle">
+    <div class="book">
+                            <img src="Assets/book5.jpg" alt="Livre 11" class="img-fluid mb-3">
+                           
+                        </div>
+                        <h5>First slide label</h5>
+    </div>
+    </div>
+    <div class="carousel-item  ">
+    <div class="squircle">
+    <div class="book">
+                            <img src="Assets/book5.jpg" alt="Livre 12" class="img-fluid mb-3">
+                           
+                        </div>
+                        <h5>First slide label</h5>
+    </div>
+    </div>
+    <div class="carousel-item  ">
+    <div class="squircle">
+    <div class="book">
+                            <img src="Assets/book10.jpg" alt="Livre 2" class="img-fluid mb-3">
+                           
+                        </div>
+                        <h5>First slide label</h5>
+    </div>
+    </div>
+    <div class="carousel-item  ">
+    <div class="squircle">
+    <div class="book">
+                            <img src="Assets/book10.jpg" alt="Livre 2" class="img-fluid mb-3">
+                           
+                        </div>
+                        <h5>First slide label</h5>
+    </div>
+    </div>
+    <div class="carousel-item  ">
+    <div class="squircle">
+    <div class="book">
+                            <img src="Assets/book10.jpg" alt="Livre 2" class="img-fluid mb-3">
+                            <p class="mb-0">Titre du Livre 10</p>
+                        </div>
+                        <h5>First slide label</h5>
+    </div>
+    
+   
+  </div>
+  <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev"  style="height: 50px;  width: 50px; ">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next" style="height: 50px;  width: 50px; ">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </button>
+</div>
+    
         </section>
     </main>
 
