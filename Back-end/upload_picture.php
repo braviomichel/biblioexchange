@@ -10,7 +10,7 @@ if(isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0) {
     // Vérification si le fichier est une image réelle ou une fausse image
     $check = getimagesize($_FILES["photo"]["tmp_name"]);
     if($check !== false) {
-        echo "Le fichier est une image - " . $check["mime"] . ".";
+        //echo "Le fichier est une image - " . $check["mime"] . ".";
         $uploadOk = 1;
     } else {
         $message = "Le fichier n'est pas une image.";

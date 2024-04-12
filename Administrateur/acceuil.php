@@ -105,41 +105,8 @@ include_once "../Back-end/check_role.php";
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">BiblioExchange Admin</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="userManagement.html"><i class="fas fa-users"></i> Gestion des
-                        Utilisateurs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="bookManagement.html"><i class="fas fa-book"></i> Gestion des Livres</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="messageManagement.html"><i class="fas fa-envelope"></i> Gestion des
-                        Messages</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="reportManagement.html"><i class="fas fa-exclamation-triangle"></i> Gestion
-                        des Signalements</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="statistics.html"><i class="fas fa-chart-bar"></i> Statistiques</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="settings.html"><i class="fas fa-cog"></i> Paramètres</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../Back-end/logout.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    
+<?php include_once "header.php"; ?>
 
     <div class="admin-dashboard">
         <h1>Tableau de bord administratif</h1>

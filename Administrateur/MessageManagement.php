@@ -68,47 +68,7 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">
-            <img src="livre1.png" alt="Logo" width="30" height="30" class="d-inline-block align-top">
-            BiblioExchange Admin
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="accueil.html"><i class="fa-solid fa-bars"></i>Tableau de Bord</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="userManagement.html"><i class="fas fa-users"></i> Gestion des Utilisateurs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="bookManagement.html"><i class="fas fa-book"></i> Gestion des Livres</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="messageManagement.html"><i class="fas fa-envelope"></i> Gestion des Messages</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="reportManagement.html"><i class="fas fa-exclamation-triangle"></i> Gestion des Signalements</a>
-                </li>
-                <!-- Ajout du menu déroulant pour les paramètres -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-cog"></i> Paramètres
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="statistics.html"><i class="fas fa-chart-bar"></i> Statistiques</a>
-                        <a class="dropdown-item" href="Profil.html"><i class="fas fa-user"></i> Profil</a>
-                        <a class="dropdown-item" href="logOut.html"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
+<?php include_once "header.php";  ?>
     <div class="message-management">
         <h1>Gestion des Messages</h1>
 

@@ -1,3 +1,51 @@
+<?php
+include_once '../Database/connect.php';
+include_once "../Back-end/check_connection.php";
+include_once "../Back-end/check_role.php";
+include_once '../Back-end/get_id.php'; // get id and stores it in $user_id variable
+
+
+// Requête SQL pour récupérer les livres
+$sql = "SELECT * FROM utilisateurs";
+// Préparation de la requête
+$stmt = $mysqli->prepare($sql);
+
+// Liaison des paramètres
+$stmt->execute();
+$result_user = $stmt->get_result();
+// Vérifier s'il y a des livres
+if ($result_user->num_rows > 0) {
+    // Initialiser un tableau pour stocker les livres
+    $users = array();
+    
+    // Parcourir les résultats et ajouter chaque livre au tableau
+    while ($ligne = $result_user->fetch_assoc()) {
+        $user = array(
+            'id' => $ligne['id_utilisateur'],
+            'name' => $ligne['nom_utilisateur']." ".$ligne['prenom_utilisateur'],
+            'email' => $ligne['email'],
+        );
+        // Ajouter le livre au tableau des livres
+        $users[] = $user;
+    }
+
+    // Convertir le tableau des livres en format JSON
+    $users_json = json_encode($users);
+
+    // Afficher le résultat JSON
+    //echo $livres_json;
+    //print_r($livres);
+} else {
+    echo "Aucun livre trouvé.";
+}
+
+// Ferme la connexion à la base de données
+$stmt->close();
+$stmt_user->close();
+$mysqli->close();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,78 +116,8 @@
     </style>
 </head>
 <body>
-<<<<<<< HEAD
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">
-            <img src="livre1.png" alt="Logo" width="30" height="30" class="d-inline-block align-top">
-            BiblioExchange Admin
-        </a>
-=======
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">BiblioExchange Admin</a>
->>>>>>> Pierre
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-<<<<<<< HEAD
-                    <a class="nav-link" href="accueil.html"><i class="fa-solid fa-bars"></i>Tableau de Bord</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="userManagement.html"><i class="fas fa-users"></i> Gestion des Utilisateurs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="bookManagement.html"><i class="fas fa-book"></i> Gestion des Livres</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="messageManagement.html"><i class="fas fa-envelope"></i> Gestion des Messages</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="reportManagement.html"><i class="fas fa-exclamation-triangle"></i> Gestion des Signalements</a>
-                </li>
-                <!-- Ajout du menu déroulant pour les paramètres -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-cog"></i> Paramètres
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="statistics.html"><i class="fas fa-chart-bar"></i> Statistiques</a>
-                        <a class="dropdown-item" href="Profil.html"><i class="fas fa-user"></i> Profil</a>
-                        <a class="dropdown-item" href="logOut.html"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
-                    </div>
-=======
-                    <a class="nav-link" href="administrateur3.html"><i class="fa-solid fa-bars"></i>Tableau de Bord</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="userManagement.html"><i class="fas fa-users"></i>Gestion des Utilisateurs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="bookManagement.html">Gestion des Livres</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="messageManagement.html">Gestion des Messages</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="reportManagement.html">Gestion des Signalements</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="statistics.html">Statistiques</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="settings.html">Paramètres</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#logOut">Déconnexion</a>
->>>>>>> Pierre
-                </li>
-            </ul>
-        </div>
-    </nav>
-
+  <?php include_once "header.php"; ?>
     <div class="user-management">
         <h1>Gestion des Utilisateurs</h1>
 
@@ -156,12 +134,14 @@
         function loadUsers() {
             // Requête AJAX pour récupérer les utilisateurs
             // Exemple de données JSON simulées
-            const users = [
-                { id: 1, name: "User 1", email: "user1@example.com" },
-                { id: 2, name: "User 2", email: "user2@example.com" },
-                { id: 3, name: "User 3", email: "user3@example.com" }
-            ];
+            // const users = [
+            //     { id: 1, name: "User 1", email: "user1@example.com" },
+            //     { id: 2, name: "User 2", email: "user2@example.com" },
+            //     { id: 3, name: "User 3", email: "user3@example.com" }
+            // ];
 
+            var users = <?php echo $users_json; ?>
+            
             // Afficher les utilisateurs dans la liste
             const userList = document.getElementById('userList');
             userList.innerHTML = ''; // Effacer la liste précédente
@@ -177,7 +157,6 @@
         document.getElementById('loadUsersBtn').addEventListener('click', loadUsers);
     </script>
 </body>
-<<<<<<< HEAD
 <footer class="bg-dark text-white py-4">
     <style>
         /* Styles supplémentaires */
@@ -213,6 +192,4 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </footer>
-=======
->>>>>>> Pierre
 </html>

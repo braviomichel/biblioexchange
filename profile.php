@@ -346,32 +346,7 @@ $mysqli->close();
                 contentType: false,
                 processData: false
             });
-        }
-
-
-        // Fonction pour envoyer l'image téléchargée au serveur
-        // function uploadImage(imageDataURL) {
-        //     fetch('#', {
-        //         method: 'POST',
-        //         body: JSON.stringify({ image: imageDataURL }),
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         }
-        //     })
-        //         .then(response => {
-        //             if (!response.ok) {
-        //                 throw new Error('Erreur lors de l\'envoi de l\'image au serveur.');
-        //             }
-        //             return response.text();
-        //         })
-        //         .then(data => {
-        //             console.log(data); // Afficher la réponse du serveur
-        //         })
-        //         .catch(error => {
-        //             console.error('Erreur:', error);
-        //         });
-        // }
-
+        }     
 
         // Gérer l'utilisation de l'avatar par défaut
         document.getElementById('useDefaultAvatarButton').addEventListener('click', function () {

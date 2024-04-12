@@ -43,7 +43,6 @@ if (isset($_COOKIE['PHPSESSID'])) {
 
 
 } else {
-    echo('5');
     // Le cookie de session n'est pas présent, rediriger vers la page de connexion
     $url = "Location: ".$root."/biblioexchange/Connexion_biblioEx.php";
     header($url);
