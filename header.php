@@ -119,7 +119,7 @@
                         <a class="dropdown-item" href="paramètre.php"><i class="fas fa-cog"></i> Paramètres</a>
                         <a class="dropdown-item" href="profile.php"><i class="fas fa-user"></i> Profil</a>
                         <a class="dropdown-item" href="signaler.php"><i class="fas fa-flag"></i> Signaler</a>
-                        <a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                        <a class="dropdown-item" href="Back-end/logout.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                     </div>
                 </li>
             </ul>
