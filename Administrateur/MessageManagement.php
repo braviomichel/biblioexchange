@@ -68,42 +68,7 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">BiblioExchange Admin</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="administrateur3.html">Tableau de Bord</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="userManagement.html">Gestion des Utilisateurs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="bookManagement.html">Gestion des Livres</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="messageManagement.html">Gestion des Messages</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="reportManagement.html">Gestion des Signalements</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="statistics.html">Statistiques</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="settings.html">Paramètres</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#logOut">Déconnexion</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
+<?php include_once "header.php";  ?>
     <div class="message-management">
         <h1>Gestion des Messages</h1>
 
@@ -141,4 +106,39 @@
         document.getElementById('loadMessagesBtn').addEventListener('click', loadMessages);
     </script>
 </body>
+<footer class="bg-dark text-white py-4">
+    <style>
+        /* Styles supplémentaires */
+        .useful-links a {
+            color: #fff; /* Couleur des liens utiles en blanc */
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>Liens utiles</h5>
+                <ul class="list-unstyled useful-links">
+                    <li><a  href="userManagement.html"><i class="fas fa-users"></i> Gestion des Utilisateurs</a></li>
+                    <li><a  href="bookManagement.html"><i class="fas fa-book"></i> Gestion des Livres</a></li>
+                    <li><a  href="messageManagement.html"><i class="fas fa-envelope"></i> Gestion des Messages</a></li>
+                    <li><a  href="reportManagement.html"><i class="fas fa-exclamation-triangle"></i> Gestion des Signalements</a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i>Parametres</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h5>Contactez-nous</h5>
+                <ul class="list-unstyled">
+                    <li>Adresse: 123 Rue de la Bibliothèque, Kénitra</li>
+                    <li>Téléphone: +123 456 789</li>
+                    <li>Email: contact@biblioexchange.com</li>
+                </ul>
+            </div>
+        </div>
+    
+        <p class="text-center">&copy; 2024 BiblioExchange. Tous droits réservés.</p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</footer>
 </html>

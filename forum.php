@@ -1,3 +1,8 @@
+<?php
+include_once "Back-end/check_connection.php";
+include_once "Back-end/check_role.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

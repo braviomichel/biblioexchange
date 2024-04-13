@@ -1,12 +1,14 @@
 <?php
 //session_start();
 
-include_once "Database/connect.php";
+include_once  $_SERVER['DOCUMENT_ROOT']."/biblioexchange/Database/connect.php";
 
 // Vérifie si le cookie de session est présent
 if (isset($_COOKIE['PHPSESSID'])) {
     // Récupère le cookie de session
     $session_id = $_COOKIE['PHPSESSID'];
+
+    $root = $_SERVER['DOCUMENT_ROOT'];
 
 
     // Vérifie la connexion
@@ -22,13 +24,15 @@ if (isset($_COOKIE['PHPSESSID'])) {
     $stmt->store_result();
 
     if ($stmt->num_rows < 0) {
-        header('Location: Connexion_biblioEx.php');
+        $url = "Location: ".$root.'/biblioexchange/Connexion_biblioEx.php';
+        header($url);
         exit;
     } 
 
 } else {
     // Si le cookie de session n'est pas présent
-    header('Location: Connexion_biblioEx.php');
+    $url = "Location: ".$root.'/biblioexchange/Connexion_biblioEx.php';
+    header($url);
     exit;
 }
 

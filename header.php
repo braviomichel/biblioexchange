@@ -103,10 +103,10 @@
                 </li>
                 <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkLivres" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-book"></i>Livres</a>
+                        <i class="fas fa-book"></i> Livres</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#"><i class="fas fa-book"></i> Mes livres</a>
-                        <a class="dropdown-item" href="#"><i class="fas fa-upload"></i> Publier un livre</a>
+                        <a class="dropdown-item" href="mes_livres.php"><i class="fas fa-book"></i> Mes livres</a>
+                        <a class="dropdown-item" href="Publier_un_livre.php"><i class="fas fa-upload"></i> Publier un livre</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -119,7 +119,7 @@
                         <a class="dropdown-item" href="paramètre.php"><i class="fas fa-cog"></i> Paramètres</a>
                         <a class="dropdown-item" href="profile.php"><i class="fas fa-user"></i> Profil</a>
                         <a class="dropdown-item" href="signaler.php"><i class="fas fa-flag"></i> Signaler</a>
-                        <a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                        <a class="dropdown-item" href="Back-end/logout.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                     </div>
                 </li>
             </ul>
@@ -133,4 +133,4 @@
 
     </nav>
         </div>
-    </header>
+</header>

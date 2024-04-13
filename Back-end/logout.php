@@ -1,10 +1,12 @@
 <?php
 
-include_once "Database/connect.php";
+include_once "../Database/connect.php";
 
 // Vérifier si le cookie de session est présent
 if (isset($_COOKIE['PHPSESSID'])) {
     $sessionId = $_COOKIE['PHPSESSID'];
+
+    $root = $_SERVER['DOCUMENT_ROOT'];
 
     // Suppression du cookie  
     $expiration_time = time() - 3600;
@@ -26,20 +28,23 @@ if (isset($_COOKIE['PHPSESSID'])) {
         $stmt = $mysqli->prepare($sql);
         $stmt->bind_param("s", $sessionId);
         $stmt->execute();
-        header('Location: Connexion_biblioEx.php');
+
+        $url = "Location: ".$root."/biblioexchange/Connexion_biblioEx.php";
+        header($url);
         exit;
 
     } else {
         // Aucune session valide n'est trouvée
 
-        header('Location: Connexion_biblioEx.php');
+        $url = "Location: ".$root."/biblioexchange/Connexion_biblioEx.php";
+        header($url);       
         exit;
     }
 
 
 } else {
-    echo('5');
     // Le cookie de session n'est pas présent, rediriger vers la page de connexion
-    header('Location: Connexion_biblioEx.php');
+    $url = "Location: ".$root."/biblioexchange/Connexion_biblioEx.php";
+    header($url);
     exit;
 }

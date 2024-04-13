@@ -1,3 +1,41 @@
+<?php
+include_once "Database/connect.php";
+include_once "Back-end/check_connection.php";
+include_once "Back-end/check_role.php";
+include_once "Back-end/get_id.php";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $problem = $_POST["problem"];
+    $date_time = date('Y-m-d H:i:s');
+    $statut = "Non Résolu";
+    
+    // insérer le signalement dans la base de données 
+
+    // Requête préparée pour insérer des données dans la table "utilisateurs"
+    $sql = "INSERT INTO signalement (id_utilisateur, date_time, raison, statut) VALUES (?, ?, ?, ?)";
+
+    // Préparation de la requête
+    $stmt = $mysqli->prepare($sql);
+
+    // Liaison des paramètres
+    $stmt->bind_param("ssss", $user_id,$date_time, $problem, $statut);
+     // Exécuter la requête préparée
+     if ($stmt->execute()) {
+        $message = "Signalement retenu !";
+        $errortype = "success";
+
+    } else {
+        $message = "Erreur lors de la création du signalement : " . $stmt->error;
+        $errortype = "danger";
+    }
+
+    // Fermer la requête et la connexion à la base de données
+    $stmt->close();
+    $mysqli->close();
+
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,10 +77,11 @@
             <h2 class="mb-0">Signaler un Problème</h2>
         </div>
         <main class="container py-4">
-         <form>
+            <?php include_once "Back-end/display.php" ?>
+         <form id="inscriptionForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <div class="form-group">
                 <label for="problem">Description du Problème</label>
-                <textarea class="form-control" id="problem" rows="5" required></textarea>
+                <textarea class="form-control" name="problem" id="problem" rows="5" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Envoyer</button>
         </form>
