@@ -107,6 +107,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="mes_livres.php"><i class="fas fa-book"></i> Mes livres</a>
                         <a class="dropdown-item" href="Publier_un_livre.php"><i class="fas fa-upload"></i> Publier un livre</a>
+                        <a class="dropdown-item" href="rechercher_un_livre.php"><i class="fas fa-search"></i> Rechercher un livre</a>
                     </div>
                 </li>
                 <li class="nav-item">

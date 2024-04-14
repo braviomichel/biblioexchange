@@ -34,7 +34,6 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="statistics.html"><i class="fas fa-chart-bar"></i> Statistiques</a>
-                        <a class="dropdown-item" href="Profil.html"><i class="fas fa-user"></i> Profil</a>
                         <a class="dropdown-item" href="../Back-end/logout.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                     </div>
                 </li>
