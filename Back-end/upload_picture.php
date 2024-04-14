@@ -17,7 +17,7 @@ if(isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0) {
         $errortype = "danger";
         $uploadOk = 0;
     }
-
+ 
     // Vérification si le fichier existe déjà
     if (file_exists($targetFile)) {
         $message = "Désolé, le fichier existe déjà.";

@@ -22,9 +22,11 @@ if ($result_user->num_rows > 0) {
     // Parcourir les résultats et ajouter chaque livre au tableau
     while ($ligne = $result_user->fetch_assoc()) {
         $livre = array(
+            'id' => $ligne['id_livre'],
             'title' => $ligne['titre_livre'],
             'author' => $ligne['auteur'],
             'publicationYear' => $ligne['année_de_publication'],
+            'categorie' => $ligne['categorie'],
             'image' => "uploads/".$ligne['couverture'] // Chemin de l'image du livre, à remplacer par le chemin réel de votre image
         );
         // Ajouter le livre au tableau des livres
@@ -155,8 +157,9 @@ $mysqli->close();
                                     <h5 class="card-title">${livre.title}</h5>
                                     <p class="card-text">Auteur: ${livre.author}</p>
                                     <p class="card-text">Année de publication: ${livre.publicationYear}</p>
-                                    <button class="btn btn-primary mr-2">Modifier</button>
-                                    <button class="btn btn-danger">Supprimer</button>
+                                    <p class="card-text">Catégorie : ${livre.categorie}</p>
+                                    <a href="modifier_livre.php?id=${livre.id}" class="btn btn-primary mr-2">Modifier</a>
+                                    <a href="modifier_livre.php" class="btn btn-danger mr-2">Supprimer</a>
                                 </div>
                             </div>
                         </div>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Conversation</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		/>
+		<style>
+			.message-container {
+				max-width: 600px;
+				margin: 50px auto;
+			}
+			.message-btn {
+				margin-bottom: 10px;
+			}
+			.sent-message {
+				background-color: #007bff;
+				color: white;
+				border-radius: 10px;
+				padding: 10px 20px;
+				margin-bottom: 10px;
+				text-align: right;
+			}
+			.received-message {
+				background-color: #f0f0f0;
+				border-radius: 10px;
+				padding: 10px 20px;
+				margin-bottom: 10px;
+				text-align: left;
+			}
+			.centered-form {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+			}
+			.form-container {
+				max-width: 400px;
+				padding: 20px;
+				border: 1px solid #ccc;
+				border-radius: 10px;
+				background-color: #f9f9f9;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="message-container" id="message-container">
+				<!-- Messages will be dynamically added here -->
+			</div>
+			<div class="text-center" id="button-container">
+				<!-- Buttons will be dynamically added here based on condition -->
+			</div>
+		</div>
+
+		<!-- Modal -->
+		<div
+			class="modal fade"
+			id="exampleModal"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="exampleModalLabel"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+						<button
+							type="button"
+							class="close"
+							data-dismiss="modal"
+							aria-label="Close"
+						>
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">...</div>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-dismiss="modal"
+						>
+							Close
+						</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="centered-form">
+			<div class="form-container">
+				<form id="info-form">
+					<div class="form-group">
+						<label for="date">Date:</label>
+						<input type="date" class="form-control" id="date" required />
+					</div>
+					<div class="form-group">
+						<label for="location">Lieu:</label>
+						<input type="text" class="form-control" id="location" required />
+					</div>
+					<div class="form-group">
+						<label for="time">Heure:</label>
+						<input type="time" class="form-control" id="time" required />
+					</div>
+					<button type="submit" class="btn btn-primary">Enregistrer</button>
+				</form>
+			</div>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script>
+			$(document).ready(function () {
+				var condition = "partage";
+
+				if (condition === "confirmation") {
+					var buttonContainer = $("#button-container");
+					var ouiButton = $("<button>")
+						.addClass("btn btn-primary message-btn")
+						.text("Oui");
+					var nonButton = $("<button>")
+						.addClass("btn btn-primary message-btn")
+						.text("Non");
+					buttonContainer.append(ouiButton, nonButton);
+
+					$(".message-btn").click(function () {
+						var message = $(this).text();
+						addSentMessage(message);
+						// For demonstration purposes, let's simulate a received message after a delay
+						setTimeout(function () {
+							addReceivedMessage("Thank you for your message!");
+						}, 1000);
+					});
+				} else if (condition === "partage") {
+					var buttonContainer = $("#button-container");
+					var editerConditionButton = $("<button>")
+						.addClass("btn btn-primary message-btn")
+						.text("Entrer les informations de partage")
+						.attr("data-toggle", "modal")
+						.attr("data-target", "#exampleModal");
+					buttonContainer.append(editerConditionButton);
+
+					$(".message-btn").click(function () {
+						var message = $(this).text();
+						addSentMessage(message);
+						// For demonstration purposes, let's simulate a received message after a delay
+						setTimeout(function () {
+							addReceivedMessage("Thank you for your message!");
+						}, 1000);
+					});
+				}
+
+				function addSentMessage(message) {
+					var messageContainer = $("#message-container");
+					var sentMessage = $("<div>").addClass("sent-message").text(message);
+					messageContainer.append(sentMessage);
+					// Scroll to the bottom to show the latest message
+					messageContainer.scrollTop(messageContainer[0].scrollHeight);
+				}
+
+				function addReceivedMessage(message) {
+					var messageContainer = $("#message-container");
+					var receivedMessage = $("<div>")
+						.addClass("received-message")
+						.text(message);
+					messageContainer.append(receivedMessage);
+					// Scroll to the bottom to show the latest message
+					messageContainer.scrollTop(messageContainer[0].scrollHeight);
+				}
+			});
+		</script>
+		<script>
+			$(document).ready(function () {
+				$("#info-form").submit(function (event) {
+					event.preventDefault();
+					var date = $("#date").val();
+					var location = $("#location").val();
+					var time = $("#time").val();
+
+					addSentMessage(
+						"Ci joint les informations de l'échange : " +
+							"Date: " +
+							date +
+							", Lieu: " +
+							location +
+							", Heure: " +
+							time +
+							"Celà vous convient -il?"
+					);
+
+					// Optionally, clear the form fields after submission
+					$("#date").val("");
+					$("#location").val("");
+					$("#time").val("");
+				});
+
+				function addSentMessage(message) {
+					var messageContainer = $("#message-container");
+					var sentMessage = $("<div>").addClass("sent-message").text(message);
+					messageContainer.append(sentMessage);
+					// Scroll to the bottom to show the latest message
+					messageContainer.scrollTop(messageContainer[0].scrollHeight);
+				}
+			});
+		</script>
+	</body>
+</html>
