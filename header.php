@@ -99,7 +99,7 @@
                     <a class="nav-link" href="notification.php"><i class="far fa-bell"></i> Notification</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Messages</a>
+                    <a class="nav-link" href="message.html"><i class="fas fa-envelope"></i> Messages</a>
                 </li>
                 <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkLivres" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -133,5 +133,5 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     </nav>
-        </div>
+    </div>
 </header>

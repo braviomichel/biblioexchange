@@ -82,7 +82,7 @@ include_once "Back-end/check_role.php";
                     <a class="nav-link" href="notification.php"><i class="far fa-bell"></i> Notification</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Messages</a>
+                    <a class="nav-link" href="message.html"><i class="fas fa-envelope"></i> Messages</a>
                 </li>
                 <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkLivres" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -138,28 +138,28 @@ include_once "Back-end/check_role.php";
                         <img src="Assets/manga1.jpg" alt="Manga 1">
                         <div class="book-info">
                             <h5>Blue Lock</h5>
-                            <p>Auteur</p>
+                            <p>Nomura YUSUKE</p>
                         </div>
             </div>
             <div class="book-card">
-                <img src="Assets/manga3.jpeg" alt="Manga 2">
+                <img src="Assets/manga2.jpeg" alt="Manga 2">
                 <div class="book-info">
                     <h5>Blue Lock</h5>
-                    <p>Auteur</p>
+                    <p>Nomura YUSUKE</p>
                 </div>
             </div>
              <div class="book-card">
-                <img src="Assets/manga2.jpeg" alt="Manga 3">
+                <img src="Assets/manga3.jpeg" alt="Manga 3">
                 <div class="book-info">
                     <h5>Kimestu No Yaiba</h5>
-                    <p>Auteur</p>
+                    <p>Koyoharu Gotôge</p>
                 </div>
             </div>
              <div class="book-card">
                 <img src="Assets/manga4.jpg" alt="Manga 4">
                 <div class="book-info">
                     <h5>Kimestu No Yaiba</h5>
-                    <p>Auteur</p>
+                    <p>Koyoharu Gotôge</p>
                 </div>
             </div>
             <!-- Ajoutez d'autres livres de manga ici -->
@@ -187,14 +187,14 @@ include_once "Back-end/check_role.php";
             <div class="book-card">
                 <img src="Assets/geo3.jpg" alt="Géopolitique 1">
                 <div class="book-info">
-                    <h5>Géopolitique 1</h5>
+                    <h5>Géopolitique 3</h5>
                     <p>Auteur</p>
                 </div>
             </div>
             <div class="book-card">
                 <img src="Assets/geo4.jpg" alt="Géopolitique 2">
                 <div class="book-info">
-                    <h5>Géopolitique 2</h5>
+                    <h5>Géopolitique 4</h5>
                     <p>Auteur</p>
                 </div>
             </div>
@@ -209,28 +209,28 @@ include_once "Back-end/check_role.php";
                 <img src="Assets/bio1.jpeg" alt="Biographie 1">
                 <div class="book-info">
                     <h5>Steve JOBBS</h5>
-                    <p>Auteur</p>
+                    <p>Steve JOBBS</p>
                 </div>
             </div>
             <div class="book-card">
                 <img src="Assets/bio2.jpg" alt="Biographie 2">
                 <div class="book-info">
                     <h5>Soprano</h5>
-                    <p>Auteur</p>
+                    <p>Soprano</p>
                 </div>
             </div>
             <div class="book-card">
                 <img src="Assets/bio3.jpg" alt="Biographie 3">
                 <div class="book-info">
                     <h5>Angela Merkel</h5>
-                    <p>Auteur</p>
+                    <p>Florence AUTRET</p>
                 </div>
             </div>
             <div class="book-card">
                 <img src="Assets/bio4.jpg" alt="Biographie 4">
                 <div class="book-info">
                     <h5>Michelle Obama</h5>
-                    <p>Auteur</p>
+                    <p>Michelle Obama</p>
                 </div>
             </div>
             <!-- Ajoutez d'autres livres de géopolitique ici -->
@@ -244,28 +244,28 @@ include_once "Back-end/check_role.php";
                 <img src="Assets/magazine1.jpeg" alt="magazine1">
                 <div class="book-info">
                     <h5>Jeune Afrique1</h5>
-                    <p>Auteur</p>
+                    <p>Béchir Ben Yahmed</p>
                 </div>
             </div>
             <div class="book-card">
                 <img src="Assets/magazine2.jpeg" alt="magazine2">
                 <div class="book-info">
                     <h5>Jeune Afrique2</h5>
-                    <p>Auteur</p>
+                    <p>Béchir Ben Yahmed</p>
                 </div>
             </div>
              <div class="book-card">
                 <img src="Assets/magazine3.png" alt="magazine3">
                 <div class="book-info">
                     <h5>Jeune Afrique3</h5>
-                    <p>Auteur</p>
+                    <p>Béchir Ben Yahmed</p>
                 </div>
             </div>
             <div class="book-card">
                 <img src="Assets/magazine4.png" alt="magazine4">
                 <div class="book-info">
                     <h5>Jeune Afrique4</h5>
-                    <p>Auteur</p>
+                    <p>Béchir Ben Yahmed</p>
                 </div>
             </div>
             <!-- Ajoutez d'autres livres de géopolitique ici -->

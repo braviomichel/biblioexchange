@@ -96,6 +96,7 @@ $mysqli->close();
                             <option value="titre">Titre</option>
                             <option value="auteur">Auteur</option>
                             <option value="annee">Année de publication</option>
+                            <option value="Categorie">Catégorie</option>
                         </select>
                         <button class="btn btn-primary btn-block" id="btnTrier">Trier</button>
                     </div>
