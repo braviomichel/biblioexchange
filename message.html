@@ -56,63 +56,9 @@
 			</div>
 		</div>
 
-		<!-- Modal -->
-		<div
-			class="modal fade"
-			id="exampleModal"
-			tabindex="-1"
-			role="dialog"
-			aria-labelledby="exampleModalLabel"
-			aria-hidden="true"
-		>
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-						<button
-							type="button"
-							class="close"
-							data-dismiss="modal"
-							aria-label="Close"
-						>
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">...</div>
-					<div class="modal-footer">
-						<button
-							type="button"
-							class="btn btn-secondary"
-							data-dismiss="modal"
-						>
-							Close
-						</button>
-						<button type="button" class="btn btn-primary">Save changes</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="centered-form">
-			<div class="form-container">
-				<form id="info-form">
-					<div class="form-group">
-						<label for="date">Date:</label>
-						<input type="date" class="form-control" id="date" required />
-					</div>
-					<div class="form-group">
-						<label for="location">Lieu:</label>
-						<input type="text" class="form-control" id="location" required />
-					</div>
-					<div class="form-group">
-						<label for="time">Heure:</label>
-						<input type="time" class="form-control" id="time" required />
-					</div>
-					<button type="submit" class="btn btn-primary">Enregistrer</button>
-				</form>
-			</div>
-		</div>
+		<div class="centered-form" id="centered-form"></div>
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="message.js"></script>
 		<script>
 			$(document).ready(function () {
 				var condition = "partage";
@@ -131,80 +77,61 @@
 						var message = $(this).text();
 						addSentMessage(message);
 						// For demonstration purposes, let's simulate a received message after a delay
-						setTimeout(function () {
-							addReceivedMessage("Thank you for your message!");
-						}, 1000);
 					});
 				} else if (condition === "partage") {
+					var formContainer = $("#centered-form");
+					var divInfos =
+						'<div class="form-container">' +
+						'<form id="info-form">' +
+						'<div class="form-group">' +
+						'<label for="date">Date:</label>' +
+						'<input type="date" class="form-control" id="date" required />' +
+						"</div>" +
+						'<div class="form-group">' +
+						'<label for="location">Lieu:</label>' +
+						'<input type="text" class="form-control" id="location" required />' +
+						"</div>" +
+						'<div class="form-group">' +
+						'<label for="time">Heure:</label>' +
+						'<input type="time" class="form-control" id="time" required />' +
+						"</div>" +
+						'<button type="submit" class="btn btn-primary">Enregistrer</button>' +
+						"</form>" +
+						"</div>";
+
+					formContainer.append(divInfos);
+				} else if (condition === "premierMessage") {
 					var buttonContainer = $("#button-container");
-					var editerConditionButton = $("<button>")
+					var premierButton = $("<button>")
 						.addClass("btn btn-primary message-btn")
-						.text("Entrer les informations de partage")
-						.attr("data-toggle", "modal")
-						.attr("data-target", "#exampleModal");
-					buttonContainer.append(editerConditionButton);
+						.text("Dites que vous êtes interessé");
+
+					buttonContainer.append(premierButton);
 
 					$(".message-btn").click(function () {
 						var message = $(this).text();
 						addSentMessage(message);
 						// For demonstration purposes, let's simulate a received message after a delay
-						setTimeout(function () {
-							addReceivedMessage("Thank you for your message!");
-						}, 1000);
 					});
 				}
 
-				function addSentMessage(message) {
-					var messageContainer = $("#message-container");
-					var sentMessage = $("<div>").addClass("sent-message").text(message);
-					messageContainer.append(sentMessage);
-					// Scroll to the bottom to show the latest message
-					messageContainer.scrollTop(messageContainer[0].scrollHeight);
-				}
+				// function addSentMessage(message) {
+				// 	var messageContainer = $("#message-container");
+				// 	var sentMessage = $("<div>").addClass("sent-message").text(message);
+				// 	messageContainer.append(sentMessage);
+				// 	// Scroll to the bottom to show the latest message
+				// 	messageContainer.scrollTop(messageContainer[0].scrollHeight);
+				// }
 
-				function addReceivedMessage(message) {
-					var messageContainer = $("#message-container");
-					var receivedMessage = $("<div>")
-						.addClass("received-message")
-						.text(message);
-					messageContainer.append(receivedMessage);
-					// Scroll to the bottom to show the latest message
-					messageContainer.scrollTop(messageContainer[0].scrollHeight);
-				}
-			});
-		</script>
-		<script>
-			$(document).ready(function () {
-				$("#info-form").submit(function (event) {
-					event.preventDefault();
-					var date = $("#date").val();
-					var location = $("#location").val();
-					var time = $("#time").val();
-
-					addSentMessage(
-						"Ci joint les informations de l'échange : " +
-							"Date: " +
-							date +
-							", Lieu: " +
-							location +
-							", Heure: " +
-							time +
-							"Celà vous convient -il?"
-					);
-
-					// Optionally, clear the form fields after submission
-					$("#date").val("");
-					$("#location").val("");
-					$("#time").val("");
-				});
-
-				function addSentMessage(message) {
-					var messageContainer = $("#message-container");
-					var sentMessage = $("<div>").addClass("sent-message").text(message);
-					messageContainer.append(sentMessage);
-					// Scroll to the bottom to show the latest message
-					messageContainer.scrollTop(messageContainer[0].scrollHeight);
-				}
+				// function addReceivedMessage(message) {
+				// 	var messageContainer = $("#message-container");
+				// 	var receivedMessage = $("<div>")
+				// 		.addClass("received-message")
+				// 		.text(message);
+				// 	messageContainer.append(receivedMessage);
+				// 	// Scroll to the bottom to show the latest message
+				// 	messageContainer.scrollTop(messageContainer[0].scrollHeight);
+				// }
 			});
 		</script>
 	</body>
