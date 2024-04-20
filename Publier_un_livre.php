@@ -4,7 +4,6 @@ include_once "Back-end/check_connection.php";
 include_once "Back-end/check_role.php";
 include_once 'Back-end/get_id.php'; // get id and stores it in $user_id variable
 
- 
 // Modification du mot de passe : 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -18,23 +17,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $author = $_POST["author"];
     $publicationYear = $_POST["publicationYear"];
     $categorie = $_POST["categorie"];
-    //$bookImage = $_POST["bookImage"];
+    $resume = $_POST["resume"]; // Nouveau champ ajouté
     $owner = $user_id;
 
-    // Requête préparée pour insérer des données dans la table "utilisateurs"
-    $sql = "INSERT INTO livres (titre_livre,auteur, année_de_publication, couverture, owner_id, categorie) VALUES (?, ?, ?, ?, ?, ?)";
+    // Requête préparée pour insérer des données dans la table "livres"
+    $sql = "INSERT INTO livres (titre_livre, auteur, année_de_publication, couverture, owner_id, categorie, resume) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     // Préparation de la requête
     $stmt = $mysqli->prepare($sql);
 
     // Liaison des paramètres
-    $stmt->bind_param("ssssis", $bookName, $author, $publicationYear, $image_url, $owner, $categorie);
+    $stmt->bind_param("sssssss", $bookName, $author, $publicationYear, $image_url, $owner, $categorie, $resume);
 
     // Exécuter la requête préparée
     if ($stmt->execute()) {
         $message = "Livre ajouté avec succès.";
         $errortype = "success";
-
     } else {
         $message = "Erreur lors de l'ajout du livre : " . $stmt->error;
         $errortype = "danger";
@@ -87,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="container mt-5">
         <div class="squircle">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
 
                 <h2 class="text-center">Publier un livre</h2>
 
@@ -128,6 +126,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <option value="Théâtre">Théâtre</option>
                         <option value="Thriller">Thriller</option>
                     </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="resume">Résumé:</label>
+                    <textarea class="form-control" id="resume" name="resume" rows="4" required></textarea>
                 </div>
 
                 <div class="form-group">

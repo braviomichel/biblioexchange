@@ -1,4 +1,4 @@
-alert("ca marcge");
+
 $(document).ready(function () {
 	$(".sendMessage").click(function () {
 		$.ajax({
@@ -15,6 +15,23 @@ $(document).ready(function () {
 		$(".affiche_msg").load("getMessages.php");
 	}
 
+
+	
+	$(".message-btn").click(function (event) {
+		event.preventDefault(); // Empêche le comportement de soumission par défaut du formulaire
+		$("#message-input").val("Bonjour. Je suis interessé par ce livre."); // Modifie la valeur du champ de message si nécessaire
+		
+		$("#message-form").submit(); // Soumet le formulaire
+	});
+	$(".oui-btn").click(function (event) {
+		event.preventDefault(); // Empêche le comportement de soumission par défaut du formulaire
+		$("#oui").val("Bonjour. Je suis interessé par ce livre."); // Modifie la valeur du champ de message si nécessaire
+		
+		$("#oui-form").submit(); // Soumet le formulaire
+	});
+	
+
+	
 	$("#info-form").submit(function (event) {
 		event.preventDefault();
 		var date = $("#date").val();

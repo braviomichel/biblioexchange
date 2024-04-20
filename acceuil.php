@@ -82,7 +82,7 @@ include_once "Back-end/check_role.php";
                     <a class="nav-link" href="notification.php"><i class="far fa-bell"></i> Notification</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="message.html"><i class="fas fa-envelope"></i> Messages</a>
+                    <a class="nav-link" href="message.php"><i class="fas fa-envelope"></i> Messages</a>
                 </li>
                 <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkLivres" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -124,7 +124,7 @@ include_once "Back-end/check_role.php";
                 <h2 class="mb-4">Échangez vos livres facilement</h2>
                 <p class="lead mb-4">Découvrez une nouvelle façon de partager vos livres préférés avec d'autres lecteurs
                     passionnés.</p>
-                <a href="Publier_un_livre.php" class="btn btn-outline-light btn-lg">Commencer</a>
+                <a href="book_list.php" class="btn btn-outline-light btn-lg">Commencer</a>
             </div>
         </section>
          <section class="popular-books py-5">
