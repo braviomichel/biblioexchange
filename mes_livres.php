@@ -16,21 +16,27 @@ if ($result_user->num_rows > 0) {
     while ($ligne = $result_user->fetch_assoc()) {
         $livres[] = $ligne;
     }
+
 } else {
-    echo "Aucun livre trouvé.";
+    //echo "Aucun livre trouvé.";
 }
+
+
+
 $stmt->close();
 $mysqli->close();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mes Livres</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+
 <body>
     <?php include_once "header.php"; ?>
 
@@ -41,7 +47,6 @@ $mysqli->close();
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Sélectionner</th>
                             <th scope="col">Image</th>
                             <th scope="col">Titre</th>
                             <th scope="col">Auteur</th>
@@ -51,21 +56,39 @@ $mysqli->close();
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($livres as $livre): ?>
-                        <tr>
-                            <td><input type="checkbox" name="selected_books[]" value="<?= $livre['id_livre']; ?>"></td>
-                            <td><img src="uploads/<?= $livre['couverture']; ?>" alt="<?= $livre['titre_livre']; ?>" style="width: 50px; height: auto;"></td>
-                            <td><?= $livre['titre_livre']; ?></td>
-                            <td><?= $livre['auteur']; ?></td>
-                            <td><?= $livre['année_de_publication']; ?></td>
-                            <td><?= $livre['categorie']; ?></td>
-                            <td>
-                                <a href="modifier_livre.php?id=<?= $livre['id_livre']; ?>" class="btn btn-primary">Modifier</a>
-                                <a href="delete_book.php?id=<?= $livre['id_livre']; ?>" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce livre ?');">Supprimer</a>
-                                <a href="select_books_to_exchange.php?id=<?= $livre['id_livre']; ?>" class="btn btn-success">Selectionner</a>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
+                        <?php if (!empty($notifications)): ?>
+                            <?php foreach ($livres as $livre): ?>
+                                <tr>
+                                    <td><img src="uploads/<?= $livre['couverture']; ?>" alt="<?= $livre['titre_livre']; ?>"
+                                            style="width: 50px; height: auto;"></td>
+                                    <td><?= $livre['titre_livre']; ?></td>
+                                    <td><?= $livre['auteur']; ?></td>
+                                    <td><?= $livre['année_de_publication']; ?></td>
+                                    <td><?= $livre['categorie']; ?></td>
+                                    <td>
+                                        <a href="modifier_livre.php?id=<?= $livre['id_livre']; ?>" class="btn btn-primary"><i
+                                                class="fas fa-edit"></i><span class="sr-only">Modifier</span></a>
+                                        <a href="supprimer_livre.php?id=<?= $livre['id_livre']; ?>" class="btn btn-danger"><i
+                                                class="fas fa-trash-alt"></i><span class="sr-only">Supprimer</span></a>
+                                        <?php
+                                        // Vérification du statut
+                                        $icone_statut = ($livre['disponible'] == 1) ? "fa-check" : "fa-times";
+                                        ?>
+                                        <a href="change_state.php?id=<?= $livre['id_livre']; ?>&disponible=<?= !$livre['disponible'] ?>"
+                                            class="btn btn-warning">
+                                            <i class="fas <?= $icone_statut ?>"></i>
+                                            <span
+                                                class="sr-only"><?= ($livre['statut'] == 1) ? "Sélectionné" : "Non sélectionné" ?></span>
+                                        </a>
+
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <div class="alert alert-info" role="alert">
+                                Aucun livre trouvé.
+                            </div>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
@@ -77,4 +100,5 @@ $mysqli->close();
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

@@ -58,7 +58,7 @@ if (isset($_GET['book_id']) && !empty($_GET['book_id'])) {
 </head>
 <body>
     <?php include_once "header.php"; ?>
-    <div class="container">
+    <div class="container mb-2">
         <h1>Détails du Livre</h1>
         <?php
             // Afficher l'image du livre

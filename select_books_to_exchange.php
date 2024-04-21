@@ -1,7 +1,7 @@
 <?php
 // Vérifier si l'identifiant de l'utilisateur est défini dans l'URL et n'est pas vide
-if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
-    $user_id = $_GET['user_id'];
+if (!isset($_GET['user_id']) && empty($_GET['user_id'])) {
+    include_once "Back-end/get_id.php";
     
     // Connexion à la base de données
     $conn = new mysqli("localhost", "root", "", "biblioexchange");

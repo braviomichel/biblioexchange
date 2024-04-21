@@ -1,9 +1,9 @@
 <?php
 // Connexion à la base de données
 $servername = "localhost";
-$username = "username";
-$password = "password";
-$dbname = "myDB";
+$username = "root";
+$password = "";
+$dbname = "biblioexchange";
 
 // Création de la connexion
 $conn = new mysqli($servername, $username, $password, $dbname);

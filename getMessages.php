@@ -1,4 +1,4 @@
-d<?php
+<?php
 include_once 'Database/connect.php';
 include_once "Back-end/check_connection.php";
 include_once "Back-end/check_role.php";

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 18 avr. 2024 à 02:47
+-- Généré le : dim. 21 avr. 2024 à 20:48
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.2.13
 
@@ -46,12 +46,11 @@ CREATE TABLE IF NOT EXISTS `livres` (
 --
 
 INSERT INTO `livres` (`id_livre`, `titre_livre`, `auteur`, `année_de_publication`, `couverture`, `resume`, `owner_id`, `categorie`, `disponible`) VALUES
-(6, 'La guerre des mondes', 'Bruno Tertrais', '2022', 'la guerre des mondes.jpeg', NULL, 34, 'Biographie', 1),
-(7, 'Dans l\'ombre du pouvoir', 'Frédéric Turpin', '2015', 'Dans l\'ombre du pouvoir.jpg', NULL, 34, '', 1),
-(9, 'Le temps des tempêtes', 'Nicolas SARKOZY', '2019', 'Le temps des tempetes.jpeg', NULL, 34, '', 1),
-(10, 'Le temps des COMBATS', 'Nicolas SARKOZY', '2023', 'Le temps des combats.jpg', NULL, 34, '', 1),
-(11, 'Hambak une vie', 'Dr Jean-Jacques KONADJE', '2022', 'hAMBAK UNE VIE.jpg', NULL, 34, '', 1),
-(12, 'Mensuel Jeune Afrique', 'Jeune Afrique', '2024', 'magazine4.png', NULL, 34, '', 1),
+(6, 'La guerre des mondes', 'Bruno Tertrais', '2022', 'la guerre des mondes.jpeg', 'test', 34, 'Biographie', 1),
+(9, 'Le temps des tempêtes', 'Nicolas SARKOZY', '2019', 'Le temps des tempetes.jpeg', 'test', 35, '', 0),
+(10, 'Le temps des COMBATS', 'Nicolas SARKOZY', '2023', 'Le temps des combats.jpg', 'test', 35, '', 1),
+(11, 'Hambak une vie', 'Dr Jean-Jacques KONADJE', '2022', 'hAMBAK UNE VIE.jpg', 'test', 34, '', 0),
+(12, 'Mensuel Jeune Afrique', 'Jeune Afrique', '2024', 'magazine4.png', 'test', 34, '', 0),
 (16, 'Odysée', 'Homère', '1924', 'odysee.jpg', 'L\'Odyssée\" est l\'une des œuvres les plus célèbres de la littérature grecque antique. Elle raconte le voyage épique d\'Ulysse (ou Odysseus en grec) alors qu\'il tente de retourner chez lui après la guerre de Troie. Son périple dure dix ans, au cours desquels il affronte de nombreux obstacles et dangers, tout en étant confronté à des épreuves divines orchestrées par les dieux de l\'Olympe.\r\n\r\nAprès la guerre de Troie, Ulysse et ses hommes entament leur retour vers Ithaque, son royaume. Cependant, en raison de la colère de Poséidon, dieu de la mer, Ulysse est confronté à de nombreuses difficultés. Il doit affronter des monstres redoutables, tels que le Cyclope Polyphème et la sorcière Circé, qui les transforment en porcs. Ulysse rencontre également les sirènes, des créatures séduisantes dont le chant peut conduire les marins à leur perte.\r\n\r\nPendant ce temps, à Ithaque, la femme d\'Ulysse, Pénélope, et leur fils, Télémaque, font face à des prétendants qui cherchent à épouser Pénélope et à prendre le contrôle du royaume. Mais Pénélope, fidèle à son époux disparu, tisse et défait chaque jour une tapisserie, promettant de choisir un prétendant une fois son ouvrage terminé.\r\n\r\nFinalement, avec l\'aide d\'Athéna et de son fils Télémaque, Ulysse parvient à rentrer chez lui. Déguisé en mendiant, il entreprend de reconquérir son royaume et de se venger des prétendants. Avec l\'aide de Télémaque et de quelques serviteurs fidèles, il massacre les prétendants et rétablit l\'ordre à Ithaque.\r\n\r\n\"L\'Odyssée\" est un récit rempli d\'aventures, de ruses, de personnages mythiques et de leçons sur la loyauté, la persévérance et le courage.', 34, 'Thriller', 1);
 
 -- --------------------------------------------------------
@@ -77,6 +76,30 @@ CREATE TABLE IF NOT EXISTS `messages` (
 INSERT INTO `messages` (`id`, `id_emetteur`, `id_recepteur`, `mess`, `dateMess`) VALUES
 (4, 1, 2, 'Bonjour. Je suis interessé par ce livre.', NULL),
 (3, 1, 2, 'Bonjour. Je suis interessé par ce livre.', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `notifications`
+--
+
+DROP TABLE IF EXISTS `notifications`;
+CREATE TABLE IF NOT EXISTS `notifications` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_emetteur` int NOT NULL,
+  `id_recepteur` int NOT NULL,
+  `Title` varchar(50) NOT NULL,
+  `messages` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `date_time` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `id_emetteur`, `id_recepteur`, `Title`, `messages`, `date_time`) VALUES
+(5, 37, 34, 'Nouvelle Demande d\'Echange', 'Vous venez de recevoir une demande d\'échange concernant votre livre La guerre des mondes', '2024-04-21');
 
 -- --------------------------------------------------------
 
@@ -135,22 +158,16 @@ CREATE TABLE IF NOT EXISTS `user_sessions` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `session_id` (`session_id`,`user_id`),
   UNIQUE KEY `session_id_2` (`session_id`,`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `user_sessions`
 --
 
 INSERT INTO `user_sessions` (`id`, `session_id`, `user_id`) VALUES
-(47, '1c95d227555811e85e71df9b0d0abf60a355abefae2a9ee2af76b3ddb3dc30a7', 35),
-(48, '8128d9e0e145058c48b122b31fd27af6766f61001117de1f5e38900c00b2c080', 34),
-(49, '66c888d69bfb76bfe9178dba6ec326cf31f16cc782668beee6415e344d87fa27', 34),
-(50, 'e033db3765a5a4bc318940696833a01999da0a638b1305844c7e125af53b2eeb', 39),
-(51, '48c0cc3375380fea2531c60d3fcf4b6189afe5a35d5915919dbb6932dac7777a', 39),
-(52, 'f5dde200a083a17796e8d5ba2172b3a998aa00e56fc13a6841d34fa91bc3bfd5', 39),
-(65, '46e6da3a55354371258499c1ab2f6107bbbd808d9ccc6d29fe44c5cb4cd29007', 34),
-(69, '6eb5fb9fae7694c1741db8a616b9fb2a67b0807dfb968f463aae057180268fd1', 41),
-(77, '1452970d882b7103c7649e7567386fed19cb20053c6775a947b429c296dc74dc', 34);
+(81, '92e6a9479322366a35f043ebf57f93a31e24b3d80f0881db13b8925bf84b969d', 37),
+(80, '40fefe226ab6db5d0aa5cff4092d35dbff2ed3619a8b28bdf9ced539bc0f8d11', 34),
+(79, '90a4047c7ce40e62c5f09199953d4f6fa718b6b94db238040c23c7486129a9f8', 34);
 
 -- --------------------------------------------------------
 
@@ -182,9 +199,9 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
 --
 
 INSERT INTO `utilisateurs` (`id_utilisateur`, `nom_utilisateur`, `prenom_utilisateur`, `email`, `mot_de_passe`, `date_naissance`, `telephone`, `sexe`, `niveau_etude`, `biographie`, `genre_prefere`, `image_profil`, `role_utilisateur`) VALUES
-(34, 'user', 'user', 'user@gmail.com', '$2y$12$6B6BVUk9ZegbEqx1gU2Y7.O8BhGqya/x5o8rWtjBbqdsRSAvIioey', '2021-10-12', '0645372875', 'homme', 'universitaire', 'JEU JOIE TRAVAIL', 'a:2:{i:0;s:7:\"fiction\";i:1;s:15:\"romanHistorique\";}', 'BiblioExchange.png', 'user'),
+(34, 'John', 'Does', 'user@gmail.com', '$2y$12$6B6BVUk9ZegbEqx1gU2Y7.O8BhGqya/x5o8rWtjBbqdsRSAvIioey', '2021-10-12', '0645372875', 'homme', 'universitaire', 'JEU JOIE TRAVAIL', 'a:2:{i:0;s:7:\"fiction\";i:1;s:15:\"romanHistorique\";}', 'target.png', 'user'),
 (35, 'ESSOU', 'Pierre Canisius Pax', 'admin@gmail.com', '$2y$12$yOypcjtBuJAqkybzeaA9DunGe2NTdyKWLImuzYmf.6OOAM9.uq17y', '2001-12-21', '0645372871', 'homme', 'universitaire', 'Etudiant, Passionné de Basket et de belles créatures', 'a:4:{i:0;s:7:\"fiction\";i:1;s:14:\"scienceFiction\";i:2;s:11:\"fantastique\";i:3;s:6:\"poesie\";}', '', 'admin'),
-(37, 'toto', 'tata', 'toto@user.com', '$2y$12$dttzOlpuhv.luliaQxVi/uwDvAM9cI5VIwYHQUvW31hIj/ZuWKW5G', '2024-04-04', '0645372871', 'homme', 'primaire', 'qqlsdnlqslkdqs,dmqsdqsdqsdqsdqsdqsdqs qdqsdqsdqsdqsddqdsqd', 'a:2:{i:0;s:7:\"fiction\";i:1;s:14:\"scienceFiction\";}', 'avatar1.png', 'user'),
+(37, 'Benjamin', 'Franklin', 'toto@user.com', '$2y$12$6B6BVUk9ZegbEqx1gU2Y7.O8BhGqya/x5o8rWtjBbqdsRSAvIioey', '2024-04-04', '0645372871', 'homme', 'primaire', 'qqlsdnlqslkdqs,dmqsdqsdqsdqsdqsdqsdqs qdqsdqsdqsdqsddqdsqd', 'a:2:{i:0;s:7:\"fiction\";i:1;s:14:\"scienceFiction\";}', 'ouidah.jpg', 'user'),
 (41, 'Lionel', 'ANANI', 'charbelazon23@gmail.com', '$2y$12$ZMCuPEtasuAq6UdMQDE8ROBNWZwnnBb5vyKbufmweUJxk7b5vLeou', '2024-04-24', '0681572736', 'homme', 'primaire', 'joie', 'a:2:{i:0;s:7:\"fiction\";i:1;s:14:\"scienceFiction\";}', 'avatar1.png', 'user');
 COMMIT;
 

@@ -1,3 +1,8 @@
+<?php
+    include_once "Back-end/get_id.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,10 +52,10 @@
                 }
 
                 // Récupérer l'ID de l'utilisateur actuellement connecté (à remplacer par votre propre méthode)
-                $currentUserId = 1; // Exemple d'ID d'utilisateur actuellement connecté
+                $currentUserId = $user_id; // Exemple d'ID d'utilisateur actuellement connecté
                 
                 // Récupérer les livres depuis la base de données en excluant ceux de l'utilisateur actuellement connecté
-                $sql = "SELECT * FROM livres WHERE owner_id != $currentUserId ORDER BY année_de_publication ASC";
+                $sql = "SELECT * FROM livres WHERE owner_id != $currentUserId and disponible = 1 ORDER BY année_de_publication ASC";
                 $result = $mysqli->query($sql);
 
                 if ($result->num_rows > 0) {

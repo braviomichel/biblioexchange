@@ -2,6 +2,8 @@
 // Vérifier si l'identifiant du livre est défini dans l'URL et n'est pas vide
 if (isset($_GET['book_id']) && !empty($_GET['book_id'])) {
     $book_id = $_GET['book_id'];
+
+    include_once "Back-end/get_id.php";
     
     // Récupérer les détails du livre depuis la base de données
     $host = 'localhost'; 
@@ -60,7 +62,7 @@ if (isset($_GET['book_id']) && !empty($_GET['book_id'])) {
 </head>
 <body>
     <?php include_once "header.php"; ?>
-    <div class="container">
+    <div class="container mb-2">
         <h1>Détails du Livre</h1>
         <?php
             // Afficher l'image du livre
@@ -79,7 +81,7 @@ if (isset($_GET['book_id']) && !empty($_GET['book_id'])) {
         <p><strong>Catégorie:</strong> <?php echo htmlspecialchars($row['categorie'], ENT_QUOTES, 'UTF-8'); ?></p>
         <p><strong>État:</strong> <?php echo (!empty($row['disponible']) && $row['disponible'] == 1) ? 'Disponible' : 'Échanger'; ?></p>
         <!-- Bouton pour proposer un échange avec redirection vers la page echange.php -->
-        <a href="echange.php?book_id=<?php echo $book_id; ?>" class="btn btn-success">Proposer un Échange</a>
+        <a href="create_notification.php?book_id=<?php echo $book_id; ?>&action=exchange" class="btn btn-success">Manifester son intérêt</a>
         <a href="book_list.php" class="btn btn-primary">Retour à la Liste des Livres</a>
     </div>
     <?php include_once 'footer.php'; ?>

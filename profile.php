@@ -19,19 +19,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $niveauEtude = $_POST["niveauEtude"];
     $bio = $_POST["bio"];
     $sexe = $_POST["sexe"];
-    
+
     // Récupération de l'image 
-    include_once $_SERVER['DOCUMENT_ROOT']."/biblioexchange/Back-end/upload_picture.php";
-    
-    $image_url = $basename;
-    // On va faire un update de la base de données 
-    $sql = "UPDATE utilisateurs SET nom_utilisateur = ?, prenom_utilisateur = ?, email = ?, date_naissance = ?, telephone = ?, sexe = ?, niveau_etude = ?, biographie = ?, image_profil = ? WHERE id_utilisateur = ?";
+    include_once "Back-end/upload_picture.php";
 
-    // Préparation de la requête
-    $stmt = $mysqli->prepare($sql);
 
-    // Liaison des paramètres
-    $stmt->bind_param("sssssssssi", $nom, $prenoms, $email, $dateNaissance, $tel, $sexe, $niveauEtude, $bio, $image_url, $user_id);
+    if (isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0) {
+        include_once "Back-end/upload_picture.php";
+        $image_url = $basename;
+    }
+
+    if (!empty($image_url)) {
+        // On va faire un update de la base de données 
+        $sql = "UPDATE utilisateurs SET nom_utilisateur = ?, prenom_utilisateur = ?, email = ?, date_naissance = ?, telephone = ?, sexe = ?, niveau_etude = ?, biographie = ?, image_profil = ? WHERE id_utilisateur = ?";
+        // Préparation de la requête
+        $stmt = $mysqli->prepare($sql);
+        // Liaison des paramètres
+        $stmt->bind_param("sssssssssi", $nom, $prenoms, $email, $dateNaissance, $tel, $sexe, $niveauEtude, $bio, $image_url, $user_id);
+    } else {
+        // On va faire un update de la base de données 
+        $sql = "UPDATE utilisateurs SET nom_utilisateur = ?, prenom_utilisateur = ?, email = ?, date_naissance = ?, telephone = ?, sexe = ?, niveau_etude = ?, biographie = ? WHERE id_utilisateur = ?";
+        // Préparation de la requête
+        $stmt = $mysqli->prepare($sql);
+        // Liaison des paramètres
+        $stmt->bind_param("ssssssssi", $nom, $prenoms, $email, $dateNaissance, $tel, $sexe, $niveauEtude, $bio, $user_id);
+    }
 
     // Exécuter la requête préparée
     if ($stmt->execute()) {
@@ -226,7 +238,7 @@ $mysqli->close();
 
             <div class="avatar-container">
                 <div class="avatar" id="avatarContainer">
-                    <img src="<?php echo "uploads/".$image_url; ?>" alt="Avatar par défaut" id="avatarImage">
+                    <img src="<?php echo "uploads/" . $image_url; ?>" alt="Avatar par défaut" id="avatarImage">
                 </div>
                 <!-- <div class="edit-buttons">
                     <button id="changeAvatarButton">Changer Avatar</button>
@@ -237,7 +249,8 @@ $mysqli->close();
             </div>
             <?php include_once "Back-end/display.php"; ?>
 
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"
+                enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="nom">Nom :</label>
                     <input type="text" id="nom" name="nom" value="<?php echo $nom; ?>">
@@ -346,7 +359,7 @@ $mysqli->close();
                 contentType: false,
                 processData: false
             });
-        }     
+        }
 
         // Gérer l'utilisation de l'avatar par défaut
         document.getElementById('useDefaultAvatarButton').addEventListener('click', function () {
@@ -367,10 +380,10 @@ $mysqli->close();
 <div class="footer">
     <?php include_once 'footer.php'; ?>
 </div>
- <!-- Bootstrap JS et jQuery (facultatif) -->
- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Bootstrap JS et jQuery (facultatif) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
 </html>
