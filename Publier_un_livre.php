@@ -21,13 +21,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $owner = $user_id;
 
     // Requête préparée pour insérer des données dans la table "livres"
-    $sql = "INSERT INTO livres (titre_livre, auteur, année_de_publication, couverture, owner_id, categorie, resume) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO livres (titre_livre, auteur, année_de_publication, couverture, owner_id, categorie, resume, disponible) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     // Préparation de la requête
     $stmt = $mysqli->prepare($sql);
 
+    $disponible = 0;
+
     // Liaison des paramètres
-    $stmt->bind_param("sssssss", $bookName, $author, $publicationYear, $image_url, $owner, $categorie, $resume);
+    $stmt->bind_param("sssssssi", $bookName, $author, $publicationYear, $image_url, $owner, $categorie, $resume, $disponible);
 
     // Exécuter la requête préparée
     if ($stmt->execute()) {
