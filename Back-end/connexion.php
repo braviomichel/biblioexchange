@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             exit;
                         } else {
 
-                            header("Location: acceuil.php");
+                            header("Location: accueil2.php");
                             exit; // Assurez-vous de terminer le script après la redirection
                         }
 

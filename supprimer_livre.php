@@ -19,14 +19,14 @@ if(isset($_GET['id'])) {
         $errortype = "success";
         $stmt->close();
         $mysqli->close();
-        header("Location: mes_livres.php");
+        header("Location: mes_livres2.php");
         exit;
     } else {
         $message = "Erreur lors de la modification du livre : " . $stmt->error;
         $errortype = "danger";
         $stmt->close();
         $mysqli->close();
-        header("Location: mes_livres.php");
+        header("Location: mes_livres2.php");
         exit;
     }
     

@@ -4,9 +4,6 @@ include_once "Back-end/check_connection.php";
 include_once "Back-end/check_role.php";
 include_once 'Back-end/get_id.php'; // Récupère et stocke l'id de l'utilisateur dans $user_id
 
-// Ajout d'un point de débogage pour vérifier l'ID de l'utilisateur
-echo "User ID: " . $user_id;
-
 // Requête SQL pour récupérer les livres de l'utilisateur
 $sql = "SELECT * FROM livres WHERE owner_id = ?";
 $stmt = $mysqli->prepare($sql);
@@ -14,17 +11,17 @@ $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result_user = $stmt->get_result();
 
-// Ajout d'un point de débogage pour vérifier le nombre de lignes renvoyées
-//echo "Number of rows: " . $result_user->num_rows;
-
-$livres = array();
 if ($result_user->num_rows > 0) {
+    $livres = array();
     while ($ligne = $result_user->fetch_assoc()) {
         $livres[] = $ligne;
     }
+
 } else {
-    //echo "Aucun livre trouvé."; // Afficher le message d'erreur si aucune ligne n'est trouvée
+    //echo "Aucun livre trouvé.";
 }
+
+
 
 $stmt->close();
 $mysqli->close();
@@ -32,12 +29,14 @@ $mysqli->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mes Livres</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+
 <body>
     <?php include_once "header.php"; ?>
 
@@ -57,8 +56,7 @@ $mysqli->close();
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Correction de la vérification de l'existence de livres -->
-                        <?php if (!empty($livres)): ?>
+                        <?php if (!empty($notifications)): ?>
                             <?php foreach ($livres as $livre): ?>
                                 <tr>
                                     <td><img src="uploads/<?= $livre['couverture']; ?>" alt="<?= $livre['titre_livre']; ?>"
@@ -80,19 +78,16 @@ $mysqli->close();
                                             class="btn btn-warning">
                                             <i class="fas <?= $icone_statut ?>"></i>
                                             <span
-                                                class="sr-only"><?= ($livre['disponible'] == 1) ? "Disponible" : "Non disponible" ?></span>
+                                                class="sr-only"><?= ($livre['statut'] == 1) ? "Sélectionné" : "Non sélectionné" ?></span>
                                         </a>
+
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php else: ?>
-                            <tr>
-                                <td colspan="6">
-                                    <div class="alert alert-info" role="alert">
-                                        Aucun livre trouvé.
-                                    </div>
-                                </td>
-                            </tr>
+                            <div class="alert alert-info" role="alert">
+                                Aucun livre trouvé.
+                            </div>
                         <?php endif; ?>
                     </tbody>
                 </table>
@@ -105,4 +100,5 @@ $mysqli->close();
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
