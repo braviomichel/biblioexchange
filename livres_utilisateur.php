@@ -44,7 +44,7 @@ $mysqli->close();
     <div class="container mt-5">
         <h2>Livres de l'utilisateur</h2>
         <?php if (count($livres) > 0): ?>
-            <form action="process_livres_selectionnes.php" method="post">
+            <form action="book_detail.php" method="post">
                 <table class="table">
                     <thead>
                         <tr>
@@ -62,7 +62,9 @@ $mysqli->close();
                                 <td><?= $livre['titre_livre']; ?></td>
                                 <td><?= $livre['auteur']; ?></td>
                                 <td><?= $livre['année_de_publication']; ?></td>
-                                <td><input type="checkbox" name="selected_books[]" value="<?= $livre['id_livre']; ?>"></td>
+                                <td>
+                                    <input type="radio" name="selected_book" value="<?= $livre['id_livre']; ?>">
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
