@@ -53,7 +53,7 @@ if ($result_user->num_rows > 0) {
         <div class="list-group">
         <?php if (!empty($notifications)): ?>
                 <?php foreach ($notifications as $notification): ?>
-                    <a href="#" class="list-group-item list-group-item-action notification-item">
+                    <a href="detail_notification.php?notification_id=<?= $notification['id'] ?>" class="list-group-item list-group-item-action notification-item">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1"><?= $notification['Title'] ?></h5>
                             <small><?= $notification['date_time'] ?></small>

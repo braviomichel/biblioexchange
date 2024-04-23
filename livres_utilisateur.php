@@ -67,7 +67,7 @@ $mysqli->close();
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-                <button type="submit" class="btn btn-success">Valider la sélection</button>
+                <button type="submit" class="btn btn-success mb-2">Valider la sélection</button>
             </form>
         <?php else: ?>
             <div class="alert alert-info">Aucun livre trouvé pour cet utilisateur.</div>

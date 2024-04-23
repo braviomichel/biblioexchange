@@ -91,6 +91,7 @@ include_once "Back-end/check_role.php";
                         <a class="dropdown-item" href="mes_livres.php"><i class="fas fa-book"></i> Mes livres</a>
                         <a class="dropdown-item" href="Publier_un_livre.php"><i class="fas fa-upload"></i> Publier un livre</a>
                         <a class="dropdown-item" href="rechercher_un_livre.php"><i class="fas fa-search"></i> Rechercher un livre</a>
+                        <a class="dropdown-item" href="mes_demandes_livres.php"><i class="fas fa-clock"></i> Mes demandes</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -275,7 +276,7 @@ include_once "Back-end/check_role.php";
 
 </div>
 </section>
-<footer class="bg-dark text-white py-4">
+<footer class="bg-dark text-white py-4"> 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome CSS -->

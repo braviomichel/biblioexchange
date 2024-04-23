@@ -1,6 +1,18 @@
 <?php
     include_once "Back-end/get_id.php";
 
+    if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
+
+        $id = $_GET['user_id'];
+
+        // Request to get the user's information and books.
+
+        $sql = '';
+        
+
+    }
+ 
+
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +35,7 @@
 <body>
     <?php include_once "header.php"; ?>
     <div class="container">
-        <h1>Liste des Livres</h1>
+        <h1>Liste des Livres de l'utilisateur <?= $username ?></h1>
         <table class="table">
             <thead>
                 <tr>

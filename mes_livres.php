@@ -5,7 +5,7 @@ include_once "Back-end/check_role.php";
 include_once 'Back-end/get_id.php'; // Récupère et stocke l'id de l'utilisateur dans $user_id
 
 // Ajout d'un point de débogage pour vérifier l'ID de l'utilisateur
-echo "User ID: " . $user_id;
+//echo "User ID: " . $user_id;
 
 // Requête SQL pour récupérer les livres de l'utilisateur
 $sql = "SELECT * FROM livres WHERE owner_id = ?";

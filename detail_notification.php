@@ -47,7 +47,7 @@ $mysqli->close();
         <p><strong>De:</strong> <?= $notification['nom_utilisateur'] . " " . $notification['prenom_utilisateur']; ?></p>
 
         <?php if (isset($notification['id_emetteur'])): ?>
-            <a href="livres_utilisateur.php?user_id=<?= $notification['id_emetteur']; ?>" class="btn btn-primary">Voir les livres de <?= $notification['nom_utilisateur']; ?></a>
+            <a href="livres_utilisateur.php?user_id=<?= $notification['id_emetteur']; ?>" class="btn btn-primary mb-2">Voir les livres de <?= $notification['nom_utilisateur']; ?></a>
         <?php else: ?>
             <p>Impossible de trouver l'ID de l'émetteur.</p>
         <?php endif; ?>
