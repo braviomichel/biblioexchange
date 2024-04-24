@@ -4,7 +4,8 @@ include_once 'Database/connect.php';
 include_once 'Back-end/check_connection.php';
 
 // Obtenir l'ID de l'utilisateur depuis les paramètres GET
-$user_id = isset($_GET['user_id']) ? (int)$_GET['user_id'] : 0;
+$user_id = isset($_GET['user_id']) ? (int) $_GET['user_id'] : 0;
+$tr = isset($_GET['tr']) ? (int) $_GET['tr'] : 0;
 
 if ($user_id === 0) {
     die("ID d'utilisateur invalide");
@@ -33,11 +34,13 @@ $mysqli->close();
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>Livres de l'utilisateur</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+
 <body>
     <?php include_once 'header.php'; ?>
 
@@ -58,7 +61,8 @@ $mysqli->close();
                     <tbody>
                         <?php foreach ($livres as $livre): ?>
                             <tr>
-                                <td><img src="uploads/<?= $livre['couverture']; ?>" alt="Couverture" style="width: 100px; height: auto;"></td>
+                                <td><img src="uploads/<?= $livre['couverture']; ?>" alt="Couverture"
+                                        style="width: 100px; height: auto;"></td>
                                 <td><?= $livre['titre_livre']; ?></td>
                                 <td><?= $livre['auteur']; ?></td>
                                 <td><?= $livre['année_de_publication']; ?></td>
@@ -69,6 +73,7 @@ $mysqli->close();
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+                <input type="text" name="tr" value="<?= $tr; ?>" hidden/>
                 <button type="submit" class="btn btn-success mb-2">Valider la sélection</button>
             </form>
         <?php else: ?>
@@ -78,4 +83,5 @@ $mysqli->close();
 
     <?php include_once 'footer.php'; ?>
 </body>
+
 </html>

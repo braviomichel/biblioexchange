@@ -67,6 +67,9 @@ if(isset($_GET['book_id']) && isset($_GET['action'])) {
     }
     elseif($action == "contrepartie")
     {
+        if(isset($_GET["tr"]))
+        {
+            $id_transaction = $_GET["tr"];
         // creation d'une notification pour le proprio du livre
 
         //recuperer le nom du livre : 
@@ -77,13 +80,13 @@ if(isset($_GET['book_id']) && isset($_GET['action'])) {
         $result = $stmt2->get_result();
         if($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            $livre = $row['titre_livre'];
+            //$livre = $row['titre_livre'];
             $owner = $row['owner_id'];
         }
         $stmt2->close();
 
-        $Title = "Nouvelle Demande d'Echange";
-        $message = "Vous venez de recevoir une demande d'échange concernant votre livre ".$livre;
+        $Title = "Contrepartie Défini";
+        $message = "Vous venez de recevoir la contrepartie pour votre demande d'échange";
         $mydate = date('Y-m-d H:i:s');
 
         $sql = "INSERT INTO notifications (id_emetteur, id_recepteur, date_time, Title, messages) VALUES (?, ?, ?, ?, ?)";
@@ -96,19 +99,18 @@ if(isset($_GET['book_id']) && isset($_GET['action'])) {
             $message = "Notification crée avec succès.";
             $errortype = "success";
 
-            // On va maintenant creer une nouvelle transaction : 
-            $sql = "INSERT INTO transactions (id_emetteur, id_recepteur,id_livre_echange,id_livre_contrepartie, date_transaction, etape) VALUES (?, ?, ?, ?, ?, ?)";
-            $id_contrepartie = 0;
-            $etape = 1;
+            // On va maintenant creer une mettre à jour la transaction : 
+            $etape = 2;
+            $sql = "UPDATE transactions SET id_livre_contrepartie = ?,etape=? WHERE id_transaction = ?";
             $stmt = $mysqli->prepare($sql);
-            $stmt->bind_param("iiiisi",$user_id,$owner,$id,$id_contrepartie,$mydate,$etape);
+            $stmt->bind_param("iii",$id,$etape,$id_transaction);
     
             if ($stmt->execute()) {
                 $message = "Transaction crée avec succès.";
                 $errortype = "success";
                 $stmt->close();
                 $mysqli->close();
-                header("Location: book_list.php");
+                header("Location: mes_demandes_livres.php");
                 exit;
             }
             
@@ -117,9 +119,10 @@ if(isset($_GET['book_id']) && isset($_GET['action'])) {
             $errortype = "danger";
             $stmt->close();
             $mysqli->close();
-            header("Location: book_list.php");
+            header("Location: mes_demandes_livres.php");
             exit;
         }
+    }
 
     }
  

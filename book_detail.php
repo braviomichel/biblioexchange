@@ -16,6 +16,7 @@ if (isset($_GET['book_id']) || $_SERVER["REQUEST_METHOD"] == "POST") {
         // Récupérer l'ID du livre sélectionné
         $book_id = (int)$_POST['selected_book'];
         $posted = true;
+        $tr = $_POST['tr'];
 
     }
 
@@ -119,7 +120,7 @@ if (isset($_GET['book_id']) || $_SERVER["REQUEST_METHOD"] == "POST") {
                 }
                 elseif(isset($posted))
                 {
-                    echo '<a href="create_transaction.php?book_id=' . $book_id . '&action=contrepartie" class="btn btn-success mr-2">Valider la contrepartie</a>';
+                    echo '<a href="create_transaction.php?book_id=' . $book_id . '&action=contrepartie&tr=' . $tr . '"class="btn btn-success mr-2">Valider la contrepartie</a>';
 
                 }
                 ?>

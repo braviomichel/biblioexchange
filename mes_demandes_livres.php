@@ -97,7 +97,7 @@ $stmt->close(); // Fermer le statement
                                     $livre_contrepartie = "En attente";
                                 } else {
                                     // Recupération des informations du ou des livres impliqués. 
-                                    $livreData = getLivreData($demande["id_livre_echange"], $mysqli);
+                                    $livreData = getLivreData($demande["id_livre_contrepartie"], $mysqli);
                                     $livre_contrepartie = $livreData["titre_livre"];
 
                                 }
@@ -110,7 +110,7 @@ $stmt->close(); // Fermer le statement
                                     $user_name = $user_implied["nom_utilisateur"] . " " . $user_implied["prenom_utilisateur"];
                                 } else {
                                     $nature = "Recue";
-                                    $url = "livres_utilisateur.php?user_id=".$demande["id_emetteur"]; //rediriger vers la section des livres de l'autre utilisateur pour choisir 
+                                    $url = "livres_utilisateur.php?user_id=".$demande["id_emetteur"]."&tr=".$demande["id_transaction"]; //rediriger vers la section des livres de l'autre utilisateur pour choisir 
                                     $user_implied = getUserData($demande["id_emetteur"], $mysqli);
                                     $user_name = $user_implied["nom_utilisateur"] . " " . $user_implied["prenom_utilisateur"];
                                 }
