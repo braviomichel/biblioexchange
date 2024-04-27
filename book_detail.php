@@ -120,7 +120,7 @@ if (isset($_GET['book_id']) || $_SERVER["REQUEST_METHOD"] == "POST") {
                 }
                 elseif(isset($posted))
                 {
-                    echo '<a href="create_transaction.php?book_id=' . $book_id . '&action=contrepartie&tr=' . $tr . '"class="btn btn-success mr-2">Valider la contrepartie</a>';
+                    echo '<a href="formEchange.php?book_id=' . $book_id . '&action=contrepartie&tr=' . $tr . '"class="btn btn-success mr-2">Valider la contrepartie</a>';
 
                 }
                 ?>
