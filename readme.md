@@ -61,7 +61,7 @@ git push origin unNomdeTonChoix
 
 ```
 
-`après si j'ai eu à faire des mofifications , pour que tu les rcupères, il te faudra exécuter dans ton dossier biblioexchange local : `
+`après si j'ai eu à faire des mofifications , pour que tu les récupères, il te faudra exécuter dans ton dossier biblioexchange local : `
 
 ```sh
 git pull origin main

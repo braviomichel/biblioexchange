@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Statistiques</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        canvas {
+            margin: 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dashboard - Statistiques</h1>
+    <div>
+        <canvas id="userChart" width="400" height="400"></canvas>
+    </div>
+    <div>
+        <canvas id="bookChart" width="400" height="400"></canvas>
+    </div>
+    <div>
+        <canvas id="messageChart" width="400" height="400"></canvas>
+    </div>
+
+    <script>
+        // Données de test pour les statistiques
+        const userData = {
+            labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin'],
+            datasets: [{
+                label: 'Nombre d\'utilisateurs actifs',
+                data: [100, 150, 200, 250, 300, 350],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        const bookData = {
+            labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin'],
+            datasets: [{
+                label: 'Nombre de livres ajoutés',
+                data: [50, 75, 100, 125, 150, 175],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        const messageData = {
+            labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin'],
+            datasets: [{
+                label: 'Nombre de messages envoyés',
+                data: [200, 250, 300, 350, 400, 450],
+                backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                borderColor: 'rgba(255, 206, 86, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        // Options des graphiques
+        const options = {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+
+        // Création des graphiques
+        const userCtx = document.getElementById('userChart').getContext('2d');
+        const userChart = new Chart(userCtx, {
+            type: 'line',
+            data: userData,
+            options: options
+        });
+
+        const bookCtx = document.getElementById('bookChart').getContext('2d');
+        const bookChart = new Chart(bookCtx, {
+            type: 'line',
+            data: bookData,
+            options: options
+        });
+
+        const messageCtx = document.getElementById('messageChart').getContext('2d');
+        const messageChart = new Chart(messageCtx, {
+            type: 'line',
+            data: messageData,
+            options: options
+        });
+    </script>
+</body>
+</html>
