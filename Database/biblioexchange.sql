@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : dim. 28 avr. 2024 à 15:43
--- Version du serveur : 8.3.0
--- Version de PHP : 8.2.18
+-- Généré le : jeu. 02 mai 2024 à 21:33
+-- Version du serveur : 8.2.0
+-- Version de PHP : 8.2.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,53 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `biblioexchange`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `forum_message`
+--
+
+DROP TABLE IF EXISTS `forum_message`;
+CREATE TABLE IF NOT EXISTS `forum_message` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_emmetteur` int NOT NULL,
+  `id_sujet` int NOT NULL,
+  `message` text NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `forum_message`
+--
+
+INSERT INTO `forum_message` (`id`, `id_emmetteur`, `id_sujet`, `message`, `created_at`) VALUES
+(9, 41, 2, 'je vais bien motherfucker ', '2024-05-02 22:30:03'),
+(8, 34, 2, 'comment vous allez ? ', '2024-05-02 22:29:53'),
+(7, 41, 2, 'coucou', '2024-05-02 22:29:24'),
+(6, 34, 2, 'hello', '2024-05-02 22:28:25');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `forum_sujet`
+--
+
+DROP TABLE IF EXISTS `forum_sujet`;
+CREATE TABLE IF NOT EXISTS `forum_sujet` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `intitule` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `forum_sujet`
+--
+
+INSERT INTO `forum_sujet` (`id`, `intitule`) VALUES
+(1, 'Mangas'),
+(2, 'Horreur');
 
 -- --------------------------------------------------------
 
@@ -39,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `livres` (
   `categorie` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `disponible` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_livre`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `livres`
@@ -47,10 +94,11 @@ CREATE TABLE IF NOT EXISTS `livres` (
 
 INSERT INTO `livres` (`id_livre`, `titre_livre`, `auteur`, `année_de_publication`, `couverture`, `resume`, `owner_id`, `categorie`, `disponible`) VALUES
 (6, 'La guerre des mondes', 'Bruno Tertrais', '2022', 'la guerre des mondes.jpeg', 'test', 34, 'Biographie', 1),
-(10, 'Le temps des COMBATS', 'Nicolas SARKOZY', '2023', 'Le temps des combats.jpg', 'test', 37, '', 1),
-(11, 'Hambak une vie', 'Dr Jean-Jacques KONADJE', '2022', 'hAMBAK UNE VIE.jpg', 'test', 34, '', 1),
-(12, 'Mensuel Jeune Afrique', 'Jeune Afrique', '2024', 'magazine4.png', 'test', 37, '', 0),
-(16, 'Odysée', 'Homère', '1924', 'odysee.jpg', 'L\'Odyssée\" est l\'une des œuvres les plus célèbres de la littérature grecque antique. Elle raconte le voyage épique d\'Ulysse (ou Odysseus en grec) alors qu\'il tente de retourner chez lui après la guerre de Troie. Son périple dure dix ans, au cours desquels il affronte de nombreux obstacles et dangers, tout en étant confronté à des épreuves divines orchestrées par les dieux de l\'Olympe.\r\n\r\nAprès la guerre de Troie, Ulysse et ses hommes entament leur retour vers Ithaque, son royaume. Cependant, en raison de la colère de Poséidon, dieu de la mer, Ulysse est confronté à de nombreuses difficultés. Il doit affronter des monstres redoutables, tels que le Cyclope Polyphème et la sorcière Circé, qui les transforment en porcs. Ulysse rencontre également les sirènes, des créatures séduisantes dont le chant peut conduire les marins à leur perte.\r\n\r\nPendant ce temps, à Ithaque, la femme d\'Ulysse, Pénélope, et leur fils, Télémaque, font face à des prétendants qui cherchent à épouser Pénélope et à prendre le contrôle du royaume. Mais Pénélope, fidèle à son époux disparu, tisse et défait chaque jour une tapisserie, promettant de choisir un prétendant une fois son ouvrage terminé.\r\n\r\nFinalement, avec l\'aide d\'Athéna et de son fils Télémaque, Ulysse parvient à rentrer chez lui. Déguisé en mendiant, il entreprend de reconquérir son royaume et de se venger des prétendants. Avec l\'aide de Télémaque et de quelques serviteurs fidèles, il massacre les prétendants et rétablit l\'ordre à Ithaque.\r\n\r\n\"L\'Odyssée\" est un récit rempli d\'aventures, de ruses, de personnages mythiques et de leçons sur la loyauté, la persévérance et le courage.', 34, 'Thriller', 0);
+(10, 'Le temps des COMBATS', 'Nicolas SARKOZY', '2023', 'Le temps des combats.jpg', 'test', 41, '', 0),
+(11, 'Hambak une vie', 'Dr Jean-Jacques KONADJE', '2022', 'hAMBAK UNE VIE.jpg', 'test', 34, '', 0),
+(12, 'Mensuel Jeune Afrique', 'Jeune Afrique', '2024', 'magazine4.png', 'test', 41, '', 0),
+(16, 'Odysée', 'Homère', '1924', 'odysee.jpg', 'L\'Odyssée\" est l\'une des œuvres les plus célèbres de la littérature grecque antique. Elle raconte le voyage épique d\'Ulysse (ou Odysseus en grec) alors qu\'il tente de retourner chez lui après la guerre de Troie. Son périple dure dix ans, au cours desquels il affronte de nombreux obstacles et dangers, tout en étant confronté à des épreuves divines orchestrées par les dieux de l\'Olympe.\r\n\r\nAprès la guerre de Troie, Ulysse et ses hommes entament leur retour vers Ithaque, son royaume. Cependant, en raison de la colère de Poséidon, dieu de la mer, Ulysse est confronté à de nombreuses difficultés. Il doit affronter des monstres redoutables, tels que le Cyclope Polyphème et la sorcière Circé, qui les transforment en porcs. Ulysse rencontre également les sirènes, des créatures séduisantes dont le chant peut conduire les marins à leur perte.\r\n\r\nPendant ce temps, à Ithaque, la femme d\'Ulysse, Pénélope, et leur fils, Télémaque, font face à des prétendants qui cherchent à épouser Pénélope et à prendre le contrôle du royaume. Mais Pénélope, fidèle à son époux disparu, tisse et défait chaque jour une tapisserie, promettant de choisir un prétendant une fois son ouvrage terminé.\r\n\r\nFinalement, avec l\'aide d\'Athéna et de son fils Télémaque, Ulysse parvient à rentrer chez lui. Déguisé en mendiant, il entreprend de reconquérir son royaume et de se venger des prétendants. Avec l\'aide de Télémaque et de quelques serviteurs fidèles, il massacre les prétendants et rétablit l\'ordre à Ithaque.\r\n\r\n\"L\'Odyssée\" est un récit rempli d\'aventures, de ruses, de personnages mythiques et de leçons sur la loyauté, la persévérance et le courage.', 34, 'Thriller', 0),
+(17, 'L\'attaque des titans', 'Peter Pan', '2018', 'titans.png', '\"L\'Attaque des Titans\" est une série animée japonaise qui se déroule dans un monde où l\'humanité vit confinée derrière de gigantesques murs pour se protéger des Titans, des créatures humanoïdes géantes qui dévorent les humains. L\'histoire suit Eren Yeager, Mikasa Ackerman et Armin Arlert, trois jeunes qui se joignent à l\'armée pour combattre les Titans après que leur ville ait été détruite par l\'une de ces créatures. Au fil de l\'histoire, ils découvrent des secrets sur les Titans, les murs et l\'histoire de leur monde. L\'intrigue explore des thèmes de survie, de vengeance, de politique et d\'identité, tout en plongeant dans les mystères entourant l\'origine des Titans et la véritable nature de leur monde.', 41, 'Mangas', 0);
 
 -- --------------------------------------------------------
 
@@ -85,26 +133,23 @@ INSERT INTO `messages` (`id`, `id_emetteur`, `id_recepteur`, `mess`, `dateMess`)
 DROP TABLE IF EXISTS `notifications`;
 CREATE TABLE IF NOT EXISTS `notifications` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `id_transaction` int NOT NULL,
   `id_emetteur` int NOT NULL,
   `id_recepteur` int NOT NULL,
   `Title` varchar(50) NOT NULL,
   `messages` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `date_time` date NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`),
+  KEY `id_transaction` (`id_transaction`)
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `notifications`
 --
 
-INSERT INTO `notifications` (`id`, `id_emetteur`, `id_recepteur`, `Title`, `messages`, `date_time`) VALUES
-(6, 37, 34, 'Nouvelle Demande d\'Echange', 'Vous venez de recevoir une demande d\'échange concernant votre livre La guerre des mondes', '2024-04-23'),
-(7, 34, 37, 'Contrepartie Défini', 'Vous venez de recevoir la contrepartie pour votre demande d\'échange', '2024-04-24'),
-(8, 41, 34, 'Nouvelle Demande d\'Echange', 'Vous venez de recevoir une demande d\'échange concernant votre livre La guerre des mondes', '2024-04-27'),
-(9, 34, 37, 'Contrepartie Défini', 'Vous venez de recevoir la contrepartie pour votre demande d\'échange', '2024-04-27'),
-(10, 34, 37, 'Contrepartie Défini', 'Vous venez de recevoir la contrepartie pour votre demande d\'échange', '2024-04-27'),
-(11, 34, 37, 'Contrepartie Défini', 'Vous venez de recevoir la contrepartie pour votre demande d\'échange', '2024-04-27'),
-(12, 34, 37, 'Contrepartie Défini', 'Vous venez de recevoir la contrepartie pour votre demande d\'échange', '2024-04-27');
+INSERT INTO `notifications` (`id`, `id_transaction`, `id_emetteur`, `id_recepteur`, `Title`, `messages`, `date_time`) VALUES
+(26, 10, 34, 41, 'Nouvelle Demande d\'Echange', 'Vous venez de recevoir une demande d\'échange concernant votre livre L\'attaque des titans', '2024-05-02'),
+(27, 10, 41, 34, 'Contrepartie Défini', 'Vous venez de recevoir la contrepartie pour votre demande d\'échange', '2024-05-02');
 
 -- --------------------------------------------------------
 
@@ -147,18 +192,19 @@ CREATE TABLE IF NOT EXISTS `transactions` (
   `lieu_echange` varchar(100) DEFAULT NULL,
   `date_echange` date DEFAULT NULL,
   `heure_echange` varchar(30) DEFAULT NULL,
+  `confirmation_owner` int NOT NULL DEFAULT '0',
+  `confirmation_contrepartie` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_transaction`),
   KEY `id_livre` (`id_livre_echange`),
   KEY `id_livre_2` (`id_livre_echange`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `transactions`
 --
 
-INSERT INTO `transactions` (`id_transaction`, `id_emetteur`, `id_recepteur`, `id_livre_echange`, `id_livre_contrepartie`, `date_transaction`, `etape`, `lieu_echange`, `date_echange`, `heure_echange`) VALUES
-(1, 37, 34, 6, 10, '2024-04-23 20:28:58', 2, 'mlkjh', '2024-04-03', '09:00'),
-(2, 41, 34, 6, 0, '2024-04-27 07:43:51', 1, NULL, NULL, NULL);
+INSERT INTO `transactions` (`id_transaction`, `id_emetteur`, `id_recepteur`, `id_livre_echange`, `id_livre_contrepartie`, `date_transaction`, `etape`, `lieu_echange`, `date_echange`, `heure_echange`, `confirmation_owner`, `confirmation_contrepartie`) VALUES
+(10, 34, 41, 17, 11, '2024-05-02 21:11:10', 4, 'Cotonou', '2024-05-16', '02:16', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -174,19 +220,18 @@ CREATE TABLE IF NOT EXISTS `user_sessions` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `session_id` (`session_id`,`user_id`),
   UNIQUE KEY `session_id_2` (`session_id`,`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `user_sessions`
 --
 
 INSERT INTO `user_sessions` (`id`, `session_id`, `user_id`) VALUES
-(82, '03f69033574bb84689d9a4eeb14a4c4bd405e3b73179bdd7037e2175c6a935af', 37),
-(81, '92e6a9479322366a35f043ebf57f93a31e24b3d80f0881db13b8925bf84b969d', 37),
-(80, '40fefe226ab6db5d0aa5cff4092d35dbff2ed3619a8b28bdf9ced539bc0f8d11', 34),
-(79, '90a4047c7ce40e62c5f09199953d4f6fa718b6b94db238040c23c7486129a9f8', 34),
-(84, '4385322ff9f3821043defb4b4aa766415dd1c1f8e4c47d8122ccf970474a99de', 34),
-(85, 'c0036dd412b4fd16a3281a5f275ba18bc5cf40a299fd13c55563a504a6460cdb', 34);
+(96, '98fba260f573f9461cf455859982ebfe0b5a5c567a042c355a1b5efef9bf639d', 41),
+(95, '155da79c1e3252916e82d68c036ffddc20954f18560bfb12ad4dd9d8c66e43bf', 41),
+(94, '31495c725b02aba66125e34e29a0bef7d4ae7180918750407f2f492ab87a8dfe', 34),
+(92, '124d02ed9e06265b8ea5fb62416dae6a703bbb342fc12acff1239f0ba420cadb', 34),
+(93, '1be8324b7b71641c6814517fcfa04d068fa8f70ec9b7c53aae288b3808939f16', 41);
 
 -- --------------------------------------------------------
 
