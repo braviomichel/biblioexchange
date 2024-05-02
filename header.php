@@ -98,7 +98,7 @@
                     </div>
                 </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="forum.php"><i la fa-comments"></i> Forum</a>
+                        <a class="nav-link" href="forum/forum.php"><i class="fas fa-comments"></i> Forum</a>
                     </li>
                      <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkPlus" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

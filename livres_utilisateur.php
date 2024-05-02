@@ -14,7 +14,7 @@ if ($user_id === 0) {
 // Requête SQL pour récupérer les livres appartenant à l'utilisateur spécifié
 $sql = "SELECT l.id_livre, l.titre_livre, l.auteur, l.année_de_publication, l.couverture
         FROM livres l
-        WHERE l.owner_id = ?";
+        WHERE l.owner_id = ? AND disponible = 1";
 
 $stmt = $mysqli->prepare($sql);
 $stmt->bind_param("i", $user_id);

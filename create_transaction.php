@@ -12,6 +12,8 @@ if (isset($_GET['book_id']) && isset($_GET['action'])) {
     if ($action == 'exchange') {
         // creation d'une notification pour le proprio du livre
 
+        $mydate = date('Y-m-d H:i:s');
+
         //recuperer le nom du livre : 
         $sql2 = "SELECT * FROM livres where id_livre = ?";
         $stmt2 = $mysqli->prepare($sql2);
@@ -41,19 +43,21 @@ if (isset($_GET['book_id']) && isset($_GET['action'])) {
             $errortype = "success";
 
             //recuperer le nom du livre : 
-            $sql2 = "SELECT * FROM transactions where id_livre = ?";
+            $sql2 = "SELECT * FROM transactions ORDER BY id_transaction DESC LIMIT 1";
             $stmt2 = $mysqli->prepare($sql2);
-            $stmt2->bind_param('i', $id);
+            // $stmt2->bind_param('i', $id);
             $stmt2->execute();
             $result = $stmt2->get_result();
+            $row = $result->fetch_assoc();
+            $tr = $row['id_transaction'];
 
             $Title = "Nouvelle Demande d'Echange";
             $message = "Vous venez de recevoir une demande d'échange concernant votre livre " . $livre;
-            $mydate = date('Y-m-d H:i:s');
 
             $sql = "INSERT INTO notifications (id_emetteur, id_recepteur, date_time, Title, messages, id_transaction) VALUES (?, ?, ?, ?, ?, ?)";
 
             $stmt = $mysqli->prepare($sql);
+
             $stmt->bind_param("iisssi", $user_id, $owner, $mydate, $Title, $message, $tr);
 
             if ($stmt->execute()) {
@@ -62,7 +66,7 @@ if (isset($_GET['book_id']) && isset($_GET['action'])) {
 
                 $stmt->close();
                 $mysqli->close();
-                header("Location: book_list.php");
+                header("Location: mes_demandes_livres.php");
                 exit;
             }
 
@@ -97,10 +101,11 @@ if (isset($_GET['book_id']) && isset($_GET['action'])) {
             $message = "Vous venez de recevoir la contrepartie pour votre demande d'échange";
             $mydate = date('Y-m-d H:i:s');
 
-            $sql = "INSERT INTO notifications (id_emetteur, id_recepteur, date_time, Title, messages) VALUES (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO notifications (id_emetteur, id_recepteur, date_time, Title, messages, id_transaction) VALUES (?, ?, ?, ?, ?, ?)";
 
+            
             $stmt = $mysqli->prepare($sql);
-            $stmt->bind_param("iisss", $user_id, $owner, $mydate, $Title, $message);
+            $stmt->bind_param("iisssi", $user_id, $owner, $mydate, $Title, $message, $id_transaction);
             //$stmt->execute();
 
             if ($stmt->execute()) {

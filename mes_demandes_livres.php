@@ -123,6 +123,18 @@ $stmt->close(); // Fermer le statement
                                     $url = "confirmationEchange.php?tr=".$demande["id_transaction"];
                                     $icone = "fas fa-check";
                                 }
+                                elseif($demande["etape"] == 3)
+                                {
+                                    $etape = "Seconde confirmation en attente";
+                                    $url = "confirmationEchange.php?tr=".$demande["id_transaction"];
+                                    $icone = "fas fa-check";
+                                }
+                                elseif($demande["etape"] == 4)
+                                {
+                                    $etape = "Transaction validée";
+                                    $url = "confirmationEchange.php?tr=".$demande["id_transaction"];
+                                    $icone = "fas fa-check";
+                                }
                                 ?>
                                 <tr>
                                     <td><?= $nature; ?></td> <!-- Afficher le titre du livre -->

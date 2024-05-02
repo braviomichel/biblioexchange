@@ -39,10 +39,10 @@ include_once 'Back-end/get_id.php'; // get id and stores it in $user_id variable
      $message = "Vous venez de recevoir la contrepartie pour votre demande d'échange";
      $mydate = date('Y-m-d H:i:s');
 
-     $sql = "INSERT INTO notifications (id_emetteur, id_recepteur, date_time, Title, messages) VALUES (?, ?, ?, ?, ?)";
- 
+     $sql = "INSERT INTO notifications (id_emetteur, id_recepteur, date_time, Title, messages, id_transaction) VALUES (?, ?, ?, ?, ?, ?)";
+
      $stmt = $mysqli->prepare($sql);
-     $stmt->bind_param("iisss",$user_id,$owner, $mydate, $Title, $message);
+     $stmt->bind_param("iisssi", $user_id, $owner, $mydate, $Title, $message, $id_transaction);
      //$stmt->execute();
          
      if ($stmt->execute()) {

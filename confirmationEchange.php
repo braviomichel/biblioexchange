@@ -2,6 +2,8 @@
 // Vérifier si l'identifiant du livre est défini dans l'URL et n'est pas vide
 include_once "Back-end/get_id.php";
 
+// On doi séparer les validations pour que chacun de son côté fasse une validation 
+
 function getUserData($id_utilisateur, $conn)
 {
     $sql = "SELECT nom_utilisateur, prenom_utilisateur FROM utilisateurs WHERE id_utilisateur = $id_utilisateur";
@@ -30,12 +32,48 @@ function getLivreData($id_livre, $conn)
 }
 
 
-
-
-
 if (isset($_GET['tr'])) {
 
     $transaction_id = $_GET['tr'];
+    $validate = false;
+    $disable = "";
+
+    if (isset($_GET['validate']) && isset($_GET['user'])) {
+        $validate = true;
+        $user = $_GET['user'];
+
+
+        // mettre la valeur de etape à 3
+        $etape = $_GET["etape"] + 1;
+
+        // Verifier de quel utilisateur il est question : 
+        if ($user_id == $user) {
+            $contrepartie = 1;
+            $sql = "UPDATE transactions SET etape = ?, confirmation_contrepartie = ? WHERE id_transaction = ?";
+            $stmt = $mysqli->prepare($sql);
+            $stmt->bind_param("iii", $etape, $contrepartie, $transaction_id);
+        } else {
+            $owner = 1;
+            $sql = "UPDATE transactions SET etape = ?, confirmation_owner = ? WHERE id_transaction = ?";
+            $stmt = $mysqli->prepare($sql);
+            $stmt->bind_param("iii", $etape, $owner, $transaction_id);
+        }
+
+        if ($stmt->execute()) {
+
+            //header("Location: mes_demandes_livres.php");
+            //exit;
+
+            //desactiver le lien : 
+            $disable = "disabled";
+
+            // Afficher le message de réussite : 
+            $message = "Félicitations, vous avez validé la transaction !";
+            $errortype = "success";
+        }
+
+
+    }
 
 
     // Récupérer les détails du livre depuis la base de données
@@ -78,7 +116,6 @@ if (isset($_GET['tr'])) {
 //     $message = "Aucune demande trouvée."; // Message si aucune demande
 // }
 }
-$stmt->close(); // Fermer le statement
 
 ?>
 
@@ -126,6 +163,10 @@ $stmt->close(); // Fermer le statement
 <body>
     <?php include_once "header.php"; ?>
     <div class="container mb-2">
+        <div class="mt-2">
+            <?php include_once "Back-end/display.php"; ?>
+
+        </div>
         <h1>Informations pour l'échange</h1>
 
         <?php
@@ -156,7 +197,7 @@ $stmt->close(); // Fermer le statement
         // } else {
         //     $url = "livres_utilisateur.php?user_id=" . $transaction["id_emetteur"] . "&tr=" . $transaction["id_transaction"]; //rediriger vers la section des livres de l'autre utilisateur pour choisir 
         // }
-
+        
         ?>
 
 
@@ -175,9 +216,42 @@ $stmt->close(); // Fermer le statement
         <p><strong>Propriétaire :</strong>
             <?php echo $user_name_emetteur; ?></p>
 
-        <button type="submit" class="btn btn-success mb-2">Valider l'échange</button>
+        <?php
+        if ($transaction["confirmation_contrepartie"] == 1 && $transaction["confirmation_owner"] == 1) {
+            $disable = "disabled";
+            $texte = "Transaction terminée";
+        } elseif ((($user_id == $transaction["id_emetteur"]) && $transaction["confirmation_contrepartie"] == 1) || (($user_id == $transaction["id_recepteur"]) && $transaction["confirmation_owner"] == 1)) {
+            $disable = "disabled";
+            $texte = "Seconde confirmation en attente";
+        } else {
+            $texte = "Valider l'échange";
+        }
+        if($transaction["etape"] == 4)
+        {
+            // on va changer l'état des livres : 
+            $sql = "UPDATE livres SET disponible = 0 WHERE id_livre = ?";
+            $stmt = $mysqli->prepare($sql);
+            $stmt->bind_param("i",$transaction["id_livre_echange"]);
+            $stmt->execute();
+
+
+            $sql = "UPDATE livres SET disponible = 0 WHERE id_livre = ?";
+            $stmt = $mysqli->prepare($sql);
+            $stmt->bind_param("i",$transaction["id_livre_contrepartie"]);
+            $stmt->execute();
+
+            $stmt->close(); // Fermer le statement
+
+        }
+        ?>
+
+        <a href="confirmationEchange.php?tr=<?= $transaction_id; ?>&validate&user=<?= $transaction["id_emetteur"]; ?>&etape=<?= $transaction["etape"] ?>"
+            class="btn btn-success <?= $disable ?>"><?= $texte; ?></a>
+        <a href="" class="btn btn-danger">Annuler l'échange</a>
+
+        <!-- <button type="submit" class="btn btn-success mb-2">Valider l'échange</button> -->
         <!-- <a href="$url" class="btn btn-warning mb-2">Faire une autre proposition</a> -->
-        <button type="submit" class="btn btn-danger mb-2">Annuler l'échange</button>
+        <!-- <button type="submit" class="btn btn-danger mb-2">Annuler l'échange</button> -->
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
