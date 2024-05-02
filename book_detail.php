@@ -4,24 +4,22 @@ include_once "Back-end/get_id.php";
 
 $book_id = 0;
 if (isset($_GET['book_id']) || $_SERVER["REQUEST_METHOD"] == "POST") {
-    if(!empty($_GET['book_id']))
-    {
+    if (!empty($_GET['book_id'])) {
         $book_id = $_GET['book_id'];
     }
 
     // Vérifier si le formulaire a été soumis
     if (isset($_POST['selected_book'])) {
         // Vérifier si un livre a été sélectionné
-    
+
         // Récupérer l'ID du livre sélectionné
-        $book_id = (int)$_POST['selected_book'];
+        $book_id = (int) $_POST['selected_book'];
         $posted = true;
         $tr = $_POST['tr'];
 
     }
 
-    if (isset($_GET["transaction"]))
-    {
+    if (isset($_GET["transaction"])) {
         $new = true;
     }
     // Récupérer les détails du livre depuis la base de données
@@ -117,9 +115,7 @@ if (isset($_GET['book_id']) || $_SERVER["REQUEST_METHOD"] == "POST") {
                     // Si $book_id est définie, afficher les boutons
                     echo '<a href="create_transaction.php?book_id=' . $book_id . '&action=exchange" class="btn btn-success mr-2">Manifester son intérêt</a>';
                     echo '<a href="book_list.php" class="btn btn-primary">Retour à la liste des Livres</a>';
-                }
-                elseif(isset($posted))
-                {
+                } elseif (isset($posted)) {
                     echo '<a href="formEchange.php?book_id=' . $book_id . '&action=contrepartie&tr=' . $tr . '"class="btn btn-success mr-2">Valider la contrepartie</a>';
 
                 }
@@ -127,6 +123,9 @@ if (isset($_GET['book_id']) || $_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <?php include_once 'footer.php'; ?>
         </body>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
         </html>
         <?php

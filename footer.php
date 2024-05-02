@@ -14,7 +14,7 @@
             <div class="col-md-6">
                 <h5>Liens utiles</h5>
                 <ul class="list-unstyled useful-links">
-                    <li><a href="accueil2.php"><i class="fas fa-home"></i>Accueil</a></li>
+                    <li><a href="accueil.php"><i class="fas fa-home"></i>Accueil</a></li>
                     <li><a href="notification.php"><i class="fas fa-bell"></i>Notifications</a></li>
                     <li><a href="message.php"><i class="fas fa-envelope"></i>Messages</a></li>
                     <li><a href="livres.php"><i class="fas fa-book"></i>Livres</a></li>

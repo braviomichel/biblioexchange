@@ -74,7 +74,7 @@ $mysqli->close();
                                                 class="fas fa-trash-alt"></i><span class="sr-only">Supprimer</span></a>
                                         <?php
                                         // Vérification du statut
-                                        $icone_statut = ($livre['disponible'] == 1) ? "fa-check" : "fa-times";
+                                        $icone_statut = ($livre['disponible'] == 1) ? "fa-times" : "fa-check";
                                         ?>
                                         <a href="change_state.php?id=<?= $livre['id_livre']; ?>&disponible=<?= !$livre['disponible'] ?>"
                                             class="btn btn-warning">

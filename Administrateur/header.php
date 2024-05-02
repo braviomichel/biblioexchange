@@ -13,7 +13,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="acceuil.php"><i class="fa-solid fa-bars"></i>Tableau de Bord</a>
+                    <a class="nav-link" href="accueil.php"><i class="fa-solid fa-bars"></i>Tableau de Bord</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="userManagement.php"><i class="fas fa-users"></i> Gestion des Utilisateurs</a>
@@ -34,7 +34,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="statistics.html"><i class="fas fa-chart-bar"></i> Statistiques</a>
-                        <a class="dropdown-item" href="../Back-end/logout.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                        <a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                     </div>
                 </li>
             </ul>

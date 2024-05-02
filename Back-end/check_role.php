@@ -2,12 +2,12 @@
 
 include_once $_SERVER['DOCUMENT_ROOT']."/biblioexchange/Back-end/get_user_data.php";
 
-//Récupérer le path auquel le user veut accéder : s'il contient admin et role != admin rediction vers acceuil.php
+//Récupérer le path auquel le user veut accéder : s'il contient admin et role != admin rediction vers accueil.php
 
 $current_page = $_SERVER['REQUEST_URI'];
 
 if (strpos($current_page, 'Administrateur') !== false && $role !== "admin") {
-    $url = "Location: ../acceuil.php";
+    $url = "Location: ../accueil.php";
     header($url);
     exit;
 }

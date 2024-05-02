@@ -59,11 +59,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if ($stmt->execute()) {
 
                         if ($role == "admin") {
-                            header("Location: Administrateur/acceuil.php");
+                            header("Location: Administrateur/accueil.php");
                             exit;
                         } else {
 
-                            header("Location: accueil2.php");
+                            header("Location: accueil.php");
                             exit; // Assurez-vous de terminer le script après la redirection
                         }
 

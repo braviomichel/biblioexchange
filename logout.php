@@ -1,6 +1,6 @@
 <?php
 
-include_once "../Database/connect.php";
+include_once "Database/connect.php";
 
 // Vérifier si le cookie de session est présent
 if (isset($_COOKIE['PHPSESSID'])) {

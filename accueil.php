@@ -49,7 +49,7 @@ include_once "Back-end/check_role.php";
 <section class="banner  text-dark py-5">
   <div class="container mt-5">
     <h1 class="text-center">Livres disponibles</h1>
-    <?php
+     <?php
       // Connexion à la base de données
       $mysqli = new mysqli("localhost", "root", "", "biblioexchange");
 

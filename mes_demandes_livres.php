@@ -92,6 +92,7 @@ $stmt->close(); // Fermer le statement
                                 $livreData = getLivreData($demande["id_livre_echange"], $mysqli);
                                 $livre_echange_name = $livreData["titre_livre"];
                                 $livre_echange_auteur = $livreData["auteur"];
+                                $icone = "fas fa-eye";
 
                                 if ($demande["id_livre_contrepartie"] == 0) {
                                     $livre_contrepartie = "En attente";
@@ -119,7 +120,8 @@ $stmt->close(); // Fermer le statement
                                     $etape = "En attente de proposition de contrepartie";
                                 } elseif ($demande["etape"] == 2) {
                                     $etape = "Contrepartie proposée. En attente de finalisation";
-                                    
+                                    $url = "confirmationEchange.php?tr=".$demande["id_transaction"];
+                                    $icone = "fas fa-check";
                                 }
                                 ?>
                                 <tr>
@@ -136,7 +138,8 @@ $stmt->close(); // Fermer le statement
 
                                     <td>
                                         <a href="<?= $url; ?>" class="btn btn-primary"><i
-                                                class="fas fa-eye"></i><span class="sr-only"></span></a>
+                                                class="<?= $icone; ?>"></i><span class="sr-only"></span></a>
+                                                
                                         <a href="#" class="btn btn-danger"><i
                                                 class="fas fa-times"></i><span class="sr-only"></span></a>
                                         <!-- Pour la suppression, il faudra supprimer la transactions mais aussi les notifications y afférentes. -->
