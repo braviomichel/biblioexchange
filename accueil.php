@@ -1,6 +1,8 @@
 <?php
 include_once "Back-end/check_connection.php";
 include_once "Back-end/check_role.php";
+include_once "Back-end/get_id.php";
+
 
 ?>
 <!DOCTYPE html>
@@ -68,7 +70,7 @@ include_once "Back-end/check_role.php";
         echo '<div class="row">';
         
         // Requête pour récupérer les livres de la catégorie actuelle
-        $livres_query = "SELECT * FROM livres WHERE categorie = '" . $category_row['categorie'] . "' AND disponible = 1";
+        $livres_query = "SELECT * FROM livres WHERE owner_id != $user_id AND categorie = '" . $category_row['categorie'] . "' AND disponible = 1";
         $livres_result = $mysqli->query($livres_query);
 
         // Affichage des livres sous forme de cards

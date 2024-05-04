@@ -29,12 +29,16 @@
 	<link rel="icon" href="../uploads/avatar1.png">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body class="d-flex
+<body>
+<?php include_once "header.php"; ?>
+<div class="d-flex
              justify-content-center
              align-items-center
              vh-100">
+
     <div class="p-2 w-400
                 rounded shadow">
+			
     	<div>
     		<div class="d-flex
     		            mb-3 p-3 bg-light
@@ -86,12 +90,18 @@
 	  
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
 <!-- <script>
 	$(document).ready(function(){
       
     });
 </script> -->
+</div>
+<?php include_once "footer.php"; ?>
+
 </body>
 </html>
 <?php

@@ -247,7 +247,7 @@ if (isset($_GET['tr'])) {
 
         <a href="confirmationEchange.php?tr=<?= $transaction_id; ?>&validate&user=<?= $transaction["id_emetteur"]; ?>&etape=<?= $transaction["etape"] ?>"
             class="btn btn-success <?= $disable ?>"><?= $texte; ?></a>
-        <a href="" class="btn btn-danger">Annuler l'échange</a>
+        <a href="delete_transaction.php?tr=<?= $transaction_id; ?>" class="btn btn-danger">Annuler l'échange</a>
 
         <!-- <button type="submit" class="btn btn-success mb-2">Valider l'échange</button> -->
         <!-- <a href="$url" class="btn btn-warning mb-2">Faire une autre proposition</a> -->

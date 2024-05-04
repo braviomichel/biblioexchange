@@ -69,11 +69,11 @@
 <header class="bg-dark text-white py-4">
     <div class="container">
         <h1 class="mb-0">
-            <img src="Assets/BiblioExchange.png" alt="Logo" class="app-logo">
+            <img src="../Assets/BiblioExchange.png" alt="Logo" class="app-logo">
             BiblioExchange
         </h1>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="accueil.php">
+            <a class="navbar-brand" href="../accueil.php">
                 <i class="fas fa-home"></i> Accueil
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,7 +82,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="notification.php"><i class="far fa-bell"></i> Notification</a>
+                        <a class="nav-link" href="../notification.php"><i class="far fa-bell"></i> Notification</a>
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="message.php"><i class="fas fa-envelope"></i> Messages</a>
@@ -91,23 +91,23 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkLivres" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-book"></i> Livres</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="mes_livres.php"><i class="fas fa-book"></i> Mes livres</a>
-                        <a class="dropdown-item" href="Publier_un_livre.php"><i class="fas fa-upload"></i> Publier un livre</a>
-                        <a class="dropdown-item" href="book_list.php"><i class="fas fa-search"></i> Rechercher un livre</a>
-                        <a class="dropdown-item" href="mes_demandes_livres.php"><i class="fa-regular fa-clock" ></i> Demandes</a>
+                        <a class="dropdown-item" href="../mes_livres.php"><i class="fas fa-book"></i> Mes livres</a>
+                        <a class="dropdown-item" href="../Publier_un_livre.php"><i class="fas fa-upload"></i> Publier un livre</a>
+                        <a class="dropdown-item" href="../book_list.php"><i class="fas fa-search"></i> Rechercher un livre</a>
+                        <a class="dropdown-item" href="../mes_demandes_livres.php"><i class="fa-regular fa-clock" ></i> Demandes</a>
                     </div>
                 </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="forum/forum.php"><i class="fas fa-comments"></i> Forum</a>
+                        <a class="nav-link" href="forum.php"><i class="fas fa-comments"></i> Forum</a>
                     </li>
                      <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkPlus" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Plus</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="paramètre.php"><i class="fas fa-cog"></i> Paramètres</a>
-                        <a class="dropdown-item" href="profile.php"><i class="fas fa-user"></i> Profil</a>
-                        <a class="dropdown-item" href="signaler.php"><i class="fas fa-flag"></i> Signaler</a>
-                        <a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                        <a class="dropdown-item" href="../paramètre.php"><i class="fas fa-cog"></i> Paramètres</a>
+                        <a class="dropdown-item" href="../profile.php"><i class="fas fa-user"></i> Profil</a>
+                        <a class="dropdown-item" href="../signaler.php"><i class="fas fa-flag"></i> Signaler</a>
+                        <a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                     </div>
                 </li>
                 </ul>

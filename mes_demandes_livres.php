@@ -152,7 +152,7 @@ $stmt->close(); // Fermer le statement
                                         <a href="<?= $url; ?>" class="btn btn-primary"><i
                                                 class="<?= $icone; ?>"></i><span class="sr-only"></span></a>
                                                 
-                                        <a href="#" class="btn btn-danger"><i
+                                        <a href="delete_transaction.php?tr=<?= $demande["id_transaction"]; ?>" class="btn btn-danger"><i
                                                 class="fas fa-times"></i><span class="sr-only"></span></a>
                                         <!-- Pour la suppression, il faudra supprimer la transactions mais aussi les notifications y afférentes. -->
                                     </td>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 02 mai 2024 à 21:33
+-- Généré le : sam. 04 mai 2024 à 11:01
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.2.13
 
@@ -93,10 +93,10 @@ CREATE TABLE IF NOT EXISTS `livres` (
 --
 
 INSERT INTO `livres` (`id_livre`, `titre_livre`, `auteur`, `année_de_publication`, `couverture`, `resume`, `owner_id`, `categorie`, `disponible`) VALUES
-(6, 'La guerre des mondes', 'Bruno Tertrais', '2022', 'la guerre des mondes.jpeg', 'test', 34, 'Biographie', 1),
+(6, 'La guerre des mondes', 'Bruno Tertrais', '2022', 'la guerre des mondes.jpeg', 'test', 34, 'Biographie', 0),
 (10, 'Le temps des COMBATS', 'Nicolas SARKOZY', '2023', 'Le temps des combats.jpg', 'test', 41, '', 0),
-(11, 'Hambak une vie', 'Dr Jean-Jacques KONADJE', '2022', 'hAMBAK UNE VIE.jpg', 'test', 34, '', 0),
-(12, 'Mensuel Jeune Afrique', 'Jeune Afrique', '2024', 'magazine4.png', 'test', 41, '', 0),
+(11, 'Hambak une vie', 'Dr Jean-Jacques KONADJE', '2022', 'hAMBAK UNE VIE.jpg', 'test', 34, '', 1),
+(12, 'Mensuel Jeune Afrique', 'Jeune Afrique', '2024', 'magazine4.png', 'test', 41, '', 1),
 (16, 'Odysée', 'Homère', '1924', 'odysee.jpg', 'L\'Odyssée\" est l\'une des œuvres les plus célèbres de la littérature grecque antique. Elle raconte le voyage épique d\'Ulysse (ou Odysseus en grec) alors qu\'il tente de retourner chez lui après la guerre de Troie. Son périple dure dix ans, au cours desquels il affronte de nombreux obstacles et dangers, tout en étant confronté à des épreuves divines orchestrées par les dieux de l\'Olympe.\r\n\r\nAprès la guerre de Troie, Ulysse et ses hommes entament leur retour vers Ithaque, son royaume. Cependant, en raison de la colère de Poséidon, dieu de la mer, Ulysse est confronté à de nombreuses difficultés. Il doit affronter des monstres redoutables, tels que le Cyclope Polyphème et la sorcière Circé, qui les transforment en porcs. Ulysse rencontre également les sirènes, des créatures séduisantes dont le chant peut conduire les marins à leur perte.\r\n\r\nPendant ce temps, à Ithaque, la femme d\'Ulysse, Pénélope, et leur fils, Télémaque, font face à des prétendants qui cherchent à épouser Pénélope et à prendre le contrôle du royaume. Mais Pénélope, fidèle à son époux disparu, tisse et défait chaque jour une tapisserie, promettant de choisir un prétendant une fois son ouvrage terminé.\r\n\r\nFinalement, avec l\'aide d\'Athéna et de son fils Télémaque, Ulysse parvient à rentrer chez lui. Déguisé en mendiant, il entreprend de reconquérir son royaume et de se venger des prétendants. Avec l\'aide de Télémaque et de quelques serviteurs fidèles, il massacre les prétendants et rétablit l\'ordre à Ithaque.\r\n\r\n\"L\'Odyssée\" est un récit rempli d\'aventures, de ruses, de personnages mythiques et de leçons sur la loyauté, la persévérance et le courage.', 34, 'Thriller', 0),
 (17, 'L\'attaque des titans', 'Peter Pan', '2018', 'titans.png', '\"L\'Attaque des Titans\" est une série animée japonaise qui se déroule dans un monde où l\'humanité vit confinée derrière de gigantesques murs pour se protéger des Titans, des créatures humanoïdes géantes qui dévorent les humains. L\'histoire suit Eren Yeager, Mikasa Ackerman et Armin Arlert, trois jeunes qui se joignent à l\'armée pour combattre les Titans après que leur ville ait été détruite par l\'une de ces créatures. Au fil de l\'histoire, ils découvrent des secrets sur les Titans, les murs et l\'histoire de leur monde. L\'intrigue explore des thèmes de survie, de vengeance, de politique et d\'identité, tout en plongeant dans les mystères entourant l\'origine des Titans et la véritable nature de leur monde.', 41, 'Mangas', 0);
 
@@ -141,15 +141,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `date_time` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_transaction` (`id_transaction`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Déchargement des données de la table `notifications`
---
-
-INSERT INTO `notifications` (`id`, `id_transaction`, `id_emetteur`, `id_recepteur`, `Title`, `messages`, `date_time`) VALUES
-(26, 10, 34, 41, 'Nouvelle Demande d\'Echange', 'Vous venez de recevoir une demande d\'échange concernant votre livre L\'attaque des titans', '2024-05-02'),
-(27, 10, 41, 34, 'Contrepartie Défini', 'Vous venez de recevoir la contrepartie pour votre demande d\'échange', '2024-05-02');
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -197,14 +189,7 @@ CREATE TABLE IF NOT EXISTS `transactions` (
   PRIMARY KEY (`id_transaction`),
   KEY `id_livre` (`id_livre_echange`),
   KEY `id_livre_2` (`id_livre_echange`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
-
---
--- Déchargement des données de la table `transactions`
---
-
-INSERT INTO `transactions` (`id_transaction`, `id_emetteur`, `id_recepteur`, `id_livre_echange`, `id_livre_contrepartie`, `date_transaction`, `etape`, `lieu_echange`, `date_echange`, `heure_echange`, `confirmation_owner`, `confirmation_contrepartie`) VALUES
-(10, 34, 41, 17, 11, '2024-05-02 21:11:10', 4, 'Cotonou', '2024-05-16', '02:16', 1, 1);
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -220,13 +205,14 @@ CREATE TABLE IF NOT EXISTS `user_sessions` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `session_id` (`session_id`,`user_id`),
   UNIQUE KEY `session_id_2` (`session_id`,`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=98 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `user_sessions`
 --
 
 INSERT INTO `user_sessions` (`id`, `session_id`, `user_id`) VALUES
+(97, '15cdb70c0816837e06ad0ccf0033899ffdb4cb9ab7d6aa11b3aa1c146d762c05', 34),
 (96, '98fba260f573f9461cf455859982ebfe0b5a5c567a042c355a1b5efef9bf639d', 41),
 (95, '155da79c1e3252916e82d68c036ffddc20954f18560bfb12ad4dd9d8c66e43bf', 41),
 (94, '31495c725b02aba66125e34e29a0bef7d4ae7180918750407f2f492ab87a8dfe', 34),
