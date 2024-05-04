@@ -195,18 +195,19 @@ CREATE TABLE IF NOT EXISTS `transactions` (
   `lieu_echange` varchar(100) DEFAULT NULL,
   `date_echange` date DEFAULT NULL,
   `heure_echange` varchar(30) DEFAULT NULL,
+  `confirmation_owner` int NOT NULL DEFAULT '0',
+  `confirmation_contrepartie` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_transaction`),
   KEY `id_livre` (`id_livre_echange`),
   KEY `id_livre_2` (`id_livre_echange`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `transactions`
 --
 
-INSERT INTO `transactions` (`id_transaction`, `id_emetteur`, `id_recepteur`, `id_livre_echange`, `id_livre_contrepartie`, `date_transaction`, `etape`, `lieu_echange`, `date_echange`, `heure_echange`) VALUES
-(1, 37, 34, 6, 10, '2024-04-23 20:28:58', 2, 'mlkjh', '2024-04-03', '09:00'),
-(2, 41, 34, 6, 0, '2024-04-27 07:43:51', 1, NULL, NULL, NULL);
+INSERT INTO `transactions` (`id_transaction`, `id_emetteur`, `id_recepteur`, `id_livre_echange`, `id_livre_contrepartie`, `date_transaction`, `etape`, `lieu_echange`, `date_echange`, `heure_echange`, `confirmation_owner`, `confirmation_contrepartie`) VALUES
+(10, 34, 41, 17, 11, '2024-05-02 21:11:10', 4, 'Cotonou', '2024-05-16', '02:16', 1, 1);
 
 -- --------------------------------------------------------
 

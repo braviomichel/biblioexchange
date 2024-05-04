@@ -14,9 +14,15 @@
             margin: 50px;
             float: left;
         }
+        .body{
+            background-color : white;
+        }
     </style>
 </head>
 <body>
+
+        <?php include_once "header.php"; ?>
+
     <h1>Statistiques</h1>
     <?php
     // Simulation de données fictives
@@ -103,6 +109,10 @@
                 }]
             }
         });
+
+        
     </script>
+
+<?php include_once 'footer.php'; ?>
 </body>
 </html>
