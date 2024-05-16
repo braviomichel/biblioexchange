@@ -1,9 +1,9 @@
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">
-            <img src="livre1.png" alt="Logo" width="30" height="30" class="d-inline-block align-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="accueil.php">
+            <img src="BiblioExchange.png" alt="Logo" width="30" height="30" class="d-inline-block align-top">
             BiblioExchange Admin
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -22,9 +22,6 @@
                     <a class="nav-link" href="bookManagement.php"><i class="fas fa-book"></i> Gestion des Livres</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="messageManagement.php"><i class="fas fa-envelope"></i> Gestion des Messages</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="reportManagement.php"><i class="fas fa-exclamation-triangle"></i> Gestion des Signalements</a>
                 </li>
                 <!-- Ajout du menu déroulant pour les paramètres -->
@@ -33,7 +30,7 @@
                         <i class="fas fa-cog"></i> Paramètres
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="statistics.html"><i class="fas fa-chart-bar"></i> Statistiques</a>
+                        <a class="dropdown-item" href="stats.php"><i class="fas fa-chart-bar"></i> Statistiques</a>
                         <a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                     </div>
                 </li>

@@ -24,7 +24,6 @@
                 <ul class="list-unstyled useful-links">
                     <li><a  href="userManagement.html"><i class="fas fa-users"></i> Gestion des Utilisateurs</a></li>
                     <li><a  href="bookManagement.html"><i class="fas fa-book"></i> Gestion des Livres</a></li>
-                    <li><a  href="messageManagement.html"><i class="fas fa-envelope"></i> Gestion des Messages</a></li>
                     <li><a  href="reportManagement.html"><i class="fas fa-exclamation-triangle"></i> Gestion des Signalements</a></li>
                     <li><a href="#"><i class="fas fa-cog"></i>Parametres</a></li>
                 </ul>
