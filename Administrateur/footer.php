@@ -10,7 +10,7 @@
         /* Votre CSS existant */
     </style>
 </head>
-<footer class="bg-dark text-white py-4">
+<footer class="bg-dark text-white py-2">
     <style>
         /* Styles supplémentaires */
         .useful-links a {

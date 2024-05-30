@@ -17,7 +17,7 @@ $result_user = $stmt->get_result();
 if ($result_user->num_rows > 0) {
     // Initialiser un tableau pour stocker les livres
     $livres = array();
-    
+
     // Parcourir les résultats et ajouter chaque livre au tableau
     $i = 1;
     while ($ligne = $result_user->fetch_assoc()) {
@@ -49,6 +49,7 @@ $mysqli->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -116,11 +117,17 @@ $mysqli->close();
         }
     </style>
 </head>
+
 <body>
-<?php include_once "header.php"; ?>
+    <?php include_once "header.php"; ?>
 
     <div class="book-management">
         <h1>Gestion des Livres</h1>
+        <?php if (isset($_GET['message'])): ?>
+            <div class="alert alert-<?php echo htmlspecialchars($_GET['errortype']); ?>">
+                <?php echo htmlspecialchars($_GET['message']); ?>
+            </div>
+        <?php endif; ?>
 
         <button id="loadBooksBtn">Charger les livres</button>
         <div id="bookList"></div>
@@ -149,14 +156,28 @@ $mysqli->close();
             books.forEach(book => {
                 const bookItem = document.createElement('div');
                 bookItem.classList.add('book-item');
-                bookItem.innerHTML = `<h3>${book.title}</h3><p>Auteur: ${book.author}</p>`;
+                bookItem.innerHTML = `<div>
+                    <h3>${book.title}</h3>
+                    <p>Auteur: ${book.author}</p> 
+                </div>
+                <button class="btn btn-danger" onclick="deleteBook(${book.id})">Supprimer</button>`;
+
                 bookList.appendChild(bookItem);
             });
         }
 
         // Chargement des livres au clic sur le bouton
         document.getElementById('loadBooksBtn').addEventListener('click', loadBooks);
+
+        function deleteBook(bookid) {
+            if (confirm("Êtes-vous sûr de vouloir supprimer ce livre ?")) {
+                window.location.href = 'supprimer_livre.php?id=' + bookid;
+            }
+        }
+
+
     </script>
     <?php include_once "footer.php"; ?>
 </body>
+
 </html>

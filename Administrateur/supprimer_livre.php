@@ -9,16 +9,16 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     // Préparer la requête SQL pour supprimer l'utilisateur
-    $sql = "DELETE FROM utilisateurs WHERE id_utilisateur = ?";
+    $sql = "DELETE FROM livres WHERE id_livre = ?";
     if ($stmt = $mysqli->prepare($sql)) {
         $stmt->bind_param("i", $id);
 
         // Exécuter la requête
         if ($stmt->execute()) {
-            $message = "Utilisateur supprimé avec succès.";
+            $message = "Livre supprimé avec succès.";
             $errortype = "success";
         } else {
-            $message = "Erreur lors de la suppression de l'utilisateur : " . $stmt->error;
+            $message = "Erreur lors de la suppression du Livre : " . $stmt->error;
             $errortype = "danger";
         }
 
@@ -34,7 +34,7 @@ if (isset($_GET['id'])) {
     $mysqli->close();
 
     // Rediriger vers la page de gestion des utilisateurs avec un message
-    header("Location: UserManagement.php?message=" . urlencode($message) . "&errortype=" . $errortype);
+    header("Location: bookManagement.php?message=" . urlencode($message) . "&errortype=" . $errortype);
     exit;
 }
 ?>

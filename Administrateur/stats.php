@@ -115,12 +115,44 @@ echo '</div>';
         }
     });
 
-    
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<?php include_once 'footer.php'; ?>
-
+<footer class="text-dark py-2">
+    <style>
+        /* Styles supplémentaires */
+        .useful-links a {
+            color: #000; /* Couleur des liens utiles en blanc */
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>Liens utiles</h5>
+                <ul class="list-unstyled useful-links">
+                    <li><a  href="userManagement.html"><i class="fas fa-users"></i> Gestion des Utilisateurs</a></li>
+                    <li><a  href="bookManagement.html"><i class="fas fa-book"></i> Gestion des Livres</a></li>
+                    <li><a  href="reportManagement.html"><i class="fas fa-exclamation-triangle"></i> Gestion des Signalements</a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i>Parametres</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h5>Contactez-nous</h5>
+                <ul class="list-unstyled">
+                    <li>Adresse: 123 Rue de la Bibliothèque, Kénitra</li>
+                    <li>Téléphone: +123 456 789</li>
+                    <li>Email: contact@biblioexchange.com</li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <p class="text-center">&copy; 2024 BiblioExchange. Tous droits réservés.</p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</footer>
 </body>
+
 </html>

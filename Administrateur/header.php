@@ -1,7 +1,7 @@
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-4">
         <a class="navbar-brand" href="accueil.php">
             <img src="BiblioExchange.png" alt="Logo" width="30" height="30" class="d-inline-block align-top">
             BiblioExchange Admin
